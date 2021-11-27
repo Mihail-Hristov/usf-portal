@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+        <section th:object="${trip}" class="trips">
+            <input type="hidden" name="tripId" id="tripId" th:value="*{id}">
+            <div class="card-header">
+                <strong th:text="*{name}"></strong>
+                <button class="add-vehicles" th:id="*{id}">Добави превозни средства</button>
+            </div>
+            <div class="card-body card-block">
+                <form
+                th:action="@{/portal/trips/edit/*{id}}"
+                th:method="POST"
+                class="trip-details"
+                >
+                    <section class="trip-section mod-vehicles">
+                        <div th:each="v : ${trip.vehicles}" class="form-group drop vehicle" ondrop="drop(event)" ondragover="allowDrop(event)" th:id="${v.key.id}">
+                            <label class="col-sm-12 control-label" th:text="${v.key.description}"></label>
+                            <div th:each="p : ${v.value.passengers}" th:object="${p}" class="form-group passenger"  draggable="true" ondragstart="drag(event)" th:id="${p.id}">
+                                <table>
+                                    <tr>
+                                        <td><img alt="image" class="img-circle" th:src="${p.getUser().getProfilePicture().getUrl()}" width="32" height="32"/></td>
+                                        <td><label class="control-label" th:text="*{name}"></label></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="trip-section">
+                        <div class="form-group drop-passengers passengers" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <label class="col-sm-12 control-label">Пътуващи</label>
+                    <div th:each="p : ${trip.availablePassengers}" th:object="${p}" class="form-group passenger"  draggable="true" ondragstart="drag(event)" th:id="${p.id}">
+
+                        <table>
+                            <tr>
+                                <td><img alt="image" class="img-circle" th:src="${p.getUser().getProfilePicture().getUrl()}" width="32" height="32"/></td>
+                                <td><label class="control-label" th:text="*{name}"></label></td>
+                            </tr>
+                        </table>
+                    </div>
+                        </div>
+                    </section>
+                </form>
+            </div>
+        </section>
+
+        <button class="edit">Редактирай</button>
+    </div>
+</section>
+</section>
+
+<script th:src="@{/js/trips.js}"></script>
+</main>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/loader.css">
+</head>
+<body>
+<div class="wrapper">
+  <div class="title">Вход за потребители</div>
+  <form
+          th:action="@{/portal/users/login}"
+          th:method="POST"
+          th:object="${userLoginModel}"
+          id="login-form">
+    <div class="field">
+      <input
+              th:field="*{username}"
+              type="text"
+              required/>
+      <label>Имейл адрес</label>
+    </div>
+    <div class="field">
+      <input
+              th:field="*{password}"
+              type="password"
+              required/>
+      <label>Парола</label>
+    </div>
+    <div class="content">
+      <div class="checkbox">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Запомни ме</label>
+      </div>
+      <div class="pass-link"><a href="#">Забравена парола?</a></div>
+    </div>
+    <div class="field">
+      <input type="submit" value="Вход">
+    </div>
+    <div class="signup-link">Нямате регистрация? <a th:href="@{/portal/users/register}">Регистрирай се</a></div>
+  </form>
+</div>
+</body>
+</html>
+

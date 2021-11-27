@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <section class="product-card">
+
+                    <div th:each="p : ${products}" th:object="${p}">
+                        <div class="wsk-cp-product">
+                            <div class="wsk-cp-img">
+                                <img th:src="*{picture.getUrl()}" alt="Product" class="img-responsive" />
+                            </div>
+                            <div class="wsk-cp-text">
+                                <div class="category">
+                                    <span>Ethnic</span>
+                                </div>
+                                <div class="title-product">
+                                    <h3 th:text="*{name}"></h3>
+                                </div>
+                                <div class="description-prod">
+                                    <p th:text="*{description}"></p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="wcf-left"><span class="price" th:text="|*{price} лв.|"></span></div>
+                                    <div class="wcf-right"><a th:href="@{/portal/products/{id}/details(id=*{id})}" class="buy-btn"><i class="zmdi zmdi-shopping-basket"></i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </section>
+</section>
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+
+</script>
+</main>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+        <section class="card">
+            <div class="card-header">
+                <strong>Създай нова кола</strong>
+            </div>
+            <div class="card-body card-block">
+                <form th:action="@{/portal/vehicles/add}"
+                      th:method="POST"
+                      th:object="${addVehicleBindingModel}"
+                      class="form__group">
+                    <div>
+                        <div>
+                            <label for="description" class="form__label">Описание</label>
+                            <input th:field="*{description}" type="text" class="form__input" id="description" placeholder="Описание" required="" />
+                        </div>
+                        <div>
+                            <label for="make" class="form__label">Марка</label>
+                            <input th:field="*{make}" type="text" class="form__input" id="make" placeholder="Full name" required="" />
+                        </div>
+                        <div>
+                            <label for="model" class="form__label">Модел</label>
+                            <input th:field="*{model}" type="text" class="form__input" id="model" placeholder="Full name" required="" />
+                        </div>
+                        <div>
+                            <select th:field="*{type}" id="type">
+                                <option value="" selected>Вид</option>
+                                <option th:each="t : ${T(com.example.backend.models.entity.enumeration.VehicleTypeEnum).values()}" th:value="${t}" th:text="${t}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="capacity" class="form__label">Седящи места</label>
+                            <input th:field="*{capacity}" type="text" class="form__input" id="capacity" placeholder="Full name" required="" />
+                        </div>
+                        <div>
+                            <label for="fuelConsumption" class="form__label">Разход</label>
+                            <input th:field="*{fuelConsumption}" type="text" class="form__input" id="fuelConsumption" placeholder="Full name" required="" />
+                        </div>
+                        <div>
+                            <select th:field="*{owner}" id="owner">
+                                <option value="" selected>Собственик</option>
+                                <option th:each="o : ${passengers}" th:value="${o.user.id}" th:text="${o.name}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit"> Submit</button>
+                </form>
+            </div>
+        </section>
+        <section class="card">
+            <div class="card-header">
+                <strong>Всички коли</strong>
+            </div>
+            <div class="card-body card-block">
+                <div class="container table-wrapper">
+                    <ul class="responsive-table table-scroll">
+                        <li class="table-header">
+                            <div class="col col-1">Описание</div>
+                            <div class="col col-2">Марка</div>
+                            <div class="col col-3">Модел</div>
+                            <div class="col col-4">Тип</div>
+                            <div class="col col-4">Капацитет</div>
+                            <div class="col col-5">Разход</div>
+                        </li>
+                        <li th:each="v : ${vehicles}" class="table-row">
+                            <div class="col col-1" data-label="Description" th:text="*{v.description}"></div>
+                            <div class="col col-2" data-label="Make" th:text="*{v.make}"></div>
+                            <div class="col col-3" data-label="Model" th:text="*{v.model}"></div>
+                            <div class="col col-3" data-label="Model" th:text="*{v.type}"></div>
+                            <div class="col col-4" data-label="Capacity" th:text="*{v.capacity}"></div>
+                            <div class="col col-5" data-label="Capacity" th:text="*{v.fuelConsumption}"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+</script>
+</main>
+</body>
+
+</html>

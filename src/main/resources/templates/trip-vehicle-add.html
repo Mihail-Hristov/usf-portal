@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+        <section class="trip">
+            <div class="card-header">
+                <strong>Създай ново пътуване</strong>
+            </div>
+            <div class="card-body card-block">
+                <form th:action="@{/portal/trips/add/vehicles/{id}(id = ${id})}"
+                      th:method="POST"
+                      th:object="${form}"
+                      class="form__group">
+                    <div>
+
+                        <div th:each="v, itemStat : ${form.vehicles}">
+                                <labbel>Коли:</labbel>
+                                <input type="checkbox" th:field="*{vehicles[__${itemStat.index}__].id}" th:value="${v.id}" th:text="${v.description}">
+                        </div>
+
+                    </div>
+                    <button type="submit"> Submit</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+</script>
+</main>
+</body>
+</html>

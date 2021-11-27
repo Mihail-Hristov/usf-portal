@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+
+        <section class="user-details">
+
+            <section class="trip">
+                <div class="card-header">
+                    <strong>Редактирай потребител</strong>
+                </div>
+                <div class="card-body card-block">
+                    <form th:action="@{/portal/settings/users/details/{id}(id = ${user.id})}"
+                          th:method="PATCH"
+                          th:object="${user}"
+                          class="form__group">
+                        <div>
+                            <div>
+                                <label for="username" class="form__label">Имейл</label>
+                                <input th:field="*{username}" type="text" class="form__input" id="username" placeholder="Име" required="" />
+                            </div>
+                            <div>
+                                <label for="firstName" class="form__label">Име</label>
+                                <input th:field="*{firstName}" type="text" class="form__input" id="firstName" placeholder="Име" required="" />
+                            </div>
+                            <div>
+                                <label for="lastName" class="form__label">Фамиля</label>
+                                <input th:field="*{lastName}" type="text" class="form__input" id="lastName" placeholder="Име" required="" />
+                            </div>
+                            <div>
+                                <label for="nickname" class="form__label">Прякор</label>
+                                <input th:field="*{nickname}" type="text" class="form__input" id="nickName" placeholder="Име" required="" />
+                            </div>
+                            <div id="box" class="input-box" for="groupName">
+                                <span class="details">Група</span>
+                                <select name="groupName">
+                                    <option th:each="aGroupName : ${groupName}"
+                                            th:value="${aGroupName}"
+                                            th:text="${aGroupName}"
+                                            th:selected="${aGroupName} eq *{groupName.name}">Group Name
+                                    </option >
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <label class="form__label">Активен</label>
+                                <input th:field="*{active}" type="checkbox" th:checked="*{isActive()}"/>
+                                <span class="slider round"></span>
+                            </div>
+                            <div class="input-box">
+                                <label class="form__label">Администратор на пътувания</label>
+                                <input th:name="tripAdmin" type="checkbox" th:checked="${#sets.contains(roles, 'TRIP_ADMIN')}"/>
+                                <span class="slider round"></span>
+                            </div>
+                            <div class="input-box">
+                                <label class="form__label">Администратор на продукти</label>
+                                <input th:name="merchAdmin" type="checkbox" th:checked="${#sets.contains(roles, 'MERCH_ADMIN')}"/>
+                                <span class="slider round"></span>
+                            </div>
+                            <div class="input-box">
+                                <label class="form__label">Администратор на чл. внос</label>
+                                <input th:name="membershipFeeAdmin" type="checkbox" th:checked="${#sets.contains(roles, 'MEMBERSHIP_FEE_ADMIN')}"/>
+                                <span class="slider round"></span>
+                            </div>
+
+                        </div>
+                        <button type="submit"> Редактирай</button>
+                    </form>
+                </div>
+            </section>
+
+        </section>
+    </div>
+</section>
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+</script>
+</main>
+
+</body>
+</html>

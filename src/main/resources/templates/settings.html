@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+
+        <section class="product-details">
+
+            <img alt="image" class="img-circle" th:src="${user.getProfilePicture().getUrl()}" width="100" height="100"/>
+
+            <form
+                    th:action="@{/portal/profiles/settings/pictures/add}"
+                    th:method="POST"
+                    enctype="multipart/form-data">
+                <input name="picture" type="file"/><br>
+                <button type="submit">Запиши</button>
+            </form>
+
+            <form
+                    th:action="@{/portal/profiles/settings/edit}"
+                    th:method="PATCH"
+                    th:object="${user}">
+                <div>
+                    <label for="username" class="form__label">Имейл</label>
+                    <input th:field="*{username}" type="text" class="form__input" id="username" disabled/>
+                </div>
+                <div>
+                    <label for="firstName" class="form__label">Име</label>
+                    <input th:field="*{firstName}" type="text" class="form__input" id="firstName" placeholder="Име" required="" />
+                </div>
+                <div>
+                    <label for="lastName" class="form__label">Фамиля</label>
+                    <input th:field="*{lastName}" type="text" class="form__input" id="lastName" placeholder="Фамилия" required="" />
+                </div>
+                <div>
+                    <label for="nickname" class="form__label">Прякор</label>
+                    <input th:field="*{nickname}" type="text" class="form__input" id="nickName" placeholder="Прякор" required="" />
+                </div>
+                <div>
+                    <label for="groupName" class="form__label">Група</label>
+                    <input th:field="*{groupName.name}" type="text" class="form__input" id="groupName" disabled />
+                </div>
+
+                <button type="submit">Запиши</button>
+            </form>
+
+        </section>
+
+    </div>
+</section>
+
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+
+    document.querySelector(".add-vehicles").addEventListener("click", (ev) => {
+        const id = ev.target.id;
+        window.location.replace("http://localhost:8080/portal/trips/add/vehicles/" + id);
+    })
+
+
+</script>
+
+</body>
+</html>

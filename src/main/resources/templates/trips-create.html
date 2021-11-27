@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+        <section class="trip">
+            <div class="card-header">
+                <strong>Създай ново пътуване</strong>
+            </div>
+            <div class="card-body card-block">
+                <form th:action="@{/portal/trips/create}"
+                      th:method="POST"
+                      th:object="${createTripBindingModel}"
+                      class="form__group">
+                    <div>
+                        <div>
+                            <label for="description" class="form__label">Име</label>
+                            <input th:field="*{name}" type="text" class="form__input" id="description" placeholder="Име" required="" />
+                        </div>
+                        <div>
+                            <select name="destinationTown" id="town">
+                                <option value="" selected>Населено място</option>
+                                <option th:each="t : ${destinationTown}" th:value="${t.id}" th:text="${t.name}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <select name="destinationCountry" id="country">
+                                <option value="" selected>Държава</option>
+                                <option th:each="c : ${destinationCountry}" th:value="${c.id}" th:text="${c.name}"></option>
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label>Ден на мача</label>
+                            <input
+                                    th:field="*{matchDay}"
+                                    type="date"
+                                    required/>
+                        </div>
+                        <div class="input-box">
+                            <label for="description" class="form__label">Изпрати имейл с покана</label>
+                            <input th:field="*{toSentAnEmail}" type="checkbox"/>
+                            <span class="slider round"></span>
+                        </div>
+                    </div>
+                    <button type="submit"> Submit</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+</script>
+</main>
+</body>
+
+</html>

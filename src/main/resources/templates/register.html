@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/register.css">
+  <link rel="stylesheet" href="/css/loader.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<div class="container">
+  <div class="title">Регистрация</div>
+  <div class="content">
+    <form
+            th:action="@{/portal/users/register}"
+            th:method="post"
+            th:object="${userModel}"
+            id="register-form">
+      <div class="user-details">
+        <div class="input-box">
+          <span class="details">Имейл адрес</span>
+          <input
+                  th:field="*{username}"
+                  type="text"
+                  placeholder="Въведете своя имейл адрес"
+                  required />
+        </div>
+        <div class="input-box">
+          <span class="details">Прякор</span>
+          <input
+                  th:field="*{nickname}"
+                  type="text"
+                  placeholder="Въведете своя прякор"/>
+        </div>
+        <div class="input-box">
+          <span class="details">Парола</span>
+          <input
+                  th:field="*{password}"
+                  type="password"
+                  placeholder="Въведете парола"
+                  required/>
+        </div>
+        <div class="input-box">
+          <span class="details">Потвърди парола</span>
+          <input
+                  th:field="*{confirmPassword}"
+                  type="password"
+                  placeholder="Потвърдете вашата парола"
+                  required/>
+        </div>
+        <div class="input-box">
+          <span class="details">Име</span>
+          <input
+                  th:field="*{firstName}"
+                  type="text"
+                  placeholder="Въведете вашето име"
+                 required/>
+        </div>
+        <div class="input-box">
+          <span class="details">Фамилия</span>
+          <input
+                  th:field="*{lastName}"
+                  type="text"
+                  placeholder="Въведете вашата фамилия"
+                  required/>
+        </div>
+        <div id="box" class="input-box" for="groupName">
+          <span class="details">Група</span>
+          <select name="groupName">
+            <option selected value="">Изберете група</option>
+            <option th:each="aGroupName : ${groupName}"
+                    th:value="${aGroupName}"
+                    th:text="${aGroupName}">Group Name
+            </option>
+          </select>
+        </div>
+        <div class="input-box">
+          <span class="details">Шофьор съм</span>
+          <label class="switch">
+            <input type="checkbox" th:value="isDriver">
+            <span class="slider round"></span>
+          </label>
+        </div>
+      </div>
+      <div id="sbm_btn" class="button">
+        <input type="submit" value="Регистрирай ме">
+      </div>
+    </form>
+  </div>
+</div>
+
+</body>
+
+</html>

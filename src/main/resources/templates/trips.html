@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+        <section class="trips">
+            <div class="card-header">
+                <strong>Всички пътувания</strong>
+                <button class="new-trip">Създай</button>
+            </div>
+            <div class="card-body card-block">
+                <div class="container table-wrapper">
+                    <ul class="responsive-table table-scroll">
+                        <li class="table-header">
+                            <div class="col col-1">Описание</div>
+                            <div class="col col-2">Тръгване</div>
+                            <div class="col col-3">Брой пътуващи</div>
+                            <div class="col col-4">Брой превозни средства</div>
+                            <div class="col col-5">До</div>
+                        </li>
+                        <li th:each="t : ${trips}" class="table-row">
+                            <a th:href="@{/portal/trips/details/{id}(id= ${t.id})}" class="table-row-link">
+                            <div class="col col-1" data-label="Description" th:text="*{t.name}"></div>
+                            <div class="col col-2" data-label="StartTime" th:text="*{t.matchDay}"></div>
+                            <div class="col col-3" data-label="Passengers" th:text="*{t.tripPassengers.size()}"></div>
+                            <div class="col col-4" data-label="Cars" th:text="*{t.vehicles.size()}"></div>
+                            <div class="col col-5" data-label="DestinationTown" th:text="*{t.destinationTown.name}"></div>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a th:if="${trips.hasPrevious()}" th:href="@{'/portal/trips/?pageNo=' + ${trips.getPageable().getPageNumber() - 1}}">Предишна</a>
+                <span th:text="${trips.getNumber() + 1}"></span>
+                <a th:if="${trips.hasNext()}" th:href="@{'/portal/trips/?pageNo=' + ${trips.getPageable().getPageNumber() + 1}}">Следваща</a>
+            </div>
+        </section>
+
+    </div>
+</section>
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+    //document.querySelectorAll(".table-row").forEach(el => {
+      //  el.addEventListener("click", (ev) => {
+        //    const id = ev.target.id;
+          //  window.location.replace("http://localhost:8080/trips/details/" + id);
+       // })
+   // });
+
+    document.querySelector(".new-trip").addEventListener("click", () => {
+        window.location.replace("http://localhost:8080/portal/trips/create")
+    })
+
+
+</script>
+</main>
+</body>
+
+</html>

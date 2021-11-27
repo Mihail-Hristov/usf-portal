@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/portal-home.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+    <div class="logo-details">
+        <i class='bx bx-football'></i>
+        <span class="logo_name">КСФ</span>
+    </div>
+    <div th:replace="fragments/commons :: sidebar">
+        Sidebar
+    </div>
+</nav>
+
+<section class="home-section">
+    <div class="home-content">
+        <i class="bx bx-menu"></i>
+        <span class="text">Винаги верни на ЦСКА</span>
+    </div>
+    <div id="main-content">
+        <section class="product">
+            <div class="card-header">
+                <strong>Създай ново артикул</strong>
+            </div>
+            <div class="card-body card-block">
+                <form th:action="@{/portal/products/create}"
+                      th:method="POST"
+                      th:object="${createProductBindingModel}"
+                      enctype="multipart/form-data"
+                      class="form__group">
+                    <div>
+                        <div>
+                            <label for="name" class="form__label">Име</label>
+                            <input th:field="*{name}" type="text" class="form__input" id="name" placeholder="Име" required="" />
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">Описание</label>
+                            <input th:field="*{description}" type="text" class="form__input" id="description" placeholder="Описание"/>
+                        </div>
+                        <div>
+                            <select th:field="*{colour}" id="colour">
+                                <option value="" selected>Цвят</option>
+                                <option th:each="c : ${T(com.example.backend.models.entity.enumeration.ColourEnum).values()}" th:value="${c}" th:text="${c.name}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">Цена</label>
+                            <input th:field="*{price}" type="number" class="form__input" id="price" placeholder="Цена"/>
+                        </div>
+                        <div>
+                            <label for="picture" class="form__label">Снимка</label>
+                            <input th:field="*{picture}" type="file" class="form__input" id="picture" required="" />
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">XS</label>
+                            <input th:field="*{xs}" type="number" class="form__input" id="xs" placeholder="Цена"/>
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">S</label>
+                            <input th:field="*{s}" type="number" class="form__input" id="s" placeholder="Цена"/>
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">M</label>
+                            <input th:field="*{m}" type="number" class="form__input" id="m" placeholder="Цена"/>
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">L</label>
+                            <input th:field="*{l}" type="number" class="form__input" id="l" placeholder="Цена"/>
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">XL</label>
+                            <input th:field="*{xl}" type="number" class="form__input" id="xl" placeholder="Цена"/>
+                        </div>
+                        <div>
+                            <label for="description" class="form__label">XXL</label>
+                            <input th:field="*{xxl}" type="number" class="form__input" id="xll" placeholder="Цена"/>
+                        </div>
+                        <div class="input-box">
+                            <label for="description" class="form__label">Изпрати имейл с покана</label>
+                            <input th:field="*{toSentAnEmail}" type="checkbox"/>
+                            <span class="slider round"></span>
+                        </div>
+                    </div>
+                    <button type="submit"> Създай</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>
+
+<script>
+    let arrow = document.querySelectorAll(".arrow");
+    for (let i = 0; i < arrow.length; i++) {
+        arrow[i].addEventListener("click", (e)=>{
+            let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+            arrowParent.classList.toggle("showMenu");
+        });
+    }
+    let sidebar = document.querySelector(".sidebar");
+    let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
+    sidebarBtn.addEventListener("click", ()=>{
+        sidebar.classList.toggle("close");
+    });
+
+
+</script>
+</main>
+</body>
+
+</html>

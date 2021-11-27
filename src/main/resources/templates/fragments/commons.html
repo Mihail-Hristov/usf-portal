@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head></head>
+
+<body>
+
+<div th:fragment="sidebar">
+
+        <ul class="nav-links">
+            <li>
+                <a th:href="@{/portal}">
+                    <i class='bx bx-grid-alt'></i>
+                    <span class="link_name">Начало</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" th:href="@{/portal}">Начало</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a th:href="@{/portal/trips}">
+                        <i class='bx bx-trip'></i>
+                        <span class="link_name">Пътувания</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" th:href="@{/portal/trips}">Пътувания</a></li>
+                    <li><a href="#">Предстоящи</a></li>
+                    <li><a href="#">Приключили</a></li>
+                    <li><a th:href="@{/portal/trips/create}">Ново</a></li>
+                    <li><a th:href="@{/portal/vehicles/all}">Коли</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a th:href="@{/portal/products}">
+                        <i class='bx bxs-t-shirt'></i>
+                        <span class="link_name">Артикули</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" th:href="@{/portal/products}">Артикули</a></li>
+                    <li><a href="#">Моите поръчки</a></li>
+                    <li><a th:href="@{/portal/products/create}">Създай нов</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class='bx bx-money'></i>
+                    <span class="link_name">Членски внос</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Членски внос</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="iocn-link">
+                    <a th:href="@{/portal/profiles/settings}">
+                        <i class='bx bx-cog'></i>
+                        <span class="link_name">Настройки</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" th:href="@{portal/profiles/settings}">Настройки</a></li>
+                    <li><a th:href="@{/portal/settings/users}">Потребители</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="profile-details">
+                    <div class="profile-content">
+                        <img src="image/profile.jpg" alt="profileImg">
+                    </div>
+                    <div class="name-job">
+                        <div class="profile_name" sec:authentication="name">Prem Shahi</div>
+                        <div class="job">Web Desginer</div>
+                    </div>
+                    <form th:action="@{/portal/users/logout}" th:method="POST">
+
+                        <input class="bx bx-log-out" type="submit" >
+                    </form>
+                </div>
+            </li>
+        </ul>
+
+
+</div>
+
+</body>
+</html>

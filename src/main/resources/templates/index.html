@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>USF 1997</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<body>
+<nav>
+    <div class="nav-content">
+        <div class="logo">
+            <a href="#">КСФ</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Начало</a></li>
+            <li><a href="#">Артикули</a></li>
+            <li><a href="#">Мултимедия</a></li>
+            <li><a href="#">КСФ и приятели</a></li>
+        </ul>
+        <div class="profile">
+            <a th:href="@{/portal/users/login}" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-red">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+    </div>
+</nav>
+<section class="home">
+</section>
+<div class="second">
+</div>
+
+<script>
+    let nav = document.querySelector("nav");
+    window.onscroll = function() {
+        if(document.documentElement.scrollTop > 20){
+            nav.classList.add("sticky");
+        }else {
+            nav.classList.remove("sticky");
+        }
+    }
+</script>
+</body>
+
+</html>
