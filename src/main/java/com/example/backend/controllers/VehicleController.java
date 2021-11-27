@@ -5,6 +5,7 @@ import com.example.backend.models.service.CreateVehicleServiceModel;
 import com.example.backend.service.VehicleService;
 import com.example.backend.service.PassengerService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -35,6 +36,7 @@ public class VehicleController {
         return new AddVehicleBindingModel();
     }
 
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
     @GetMapping("/all")
     public String showAllCars(Model model) {
 
@@ -45,6 +47,7 @@ public class VehicleController {
     }
 
 
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
     @PostMapping("/add")
     public String createCar(@Valid AddVehicleBindingModel addVehicleBindingModel,
                             BindingResult bindingResult,

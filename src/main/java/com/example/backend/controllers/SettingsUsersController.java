@@ -5,6 +5,7 @@ import com.example.backend.models.entity.enumeration.GroupNameEnum;
 import com.example.backend.models.service.UserDetailsServiceModel;
 import com.example.backend.service.UserService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,14 +28,19 @@ public class SettingsUsersController {
         this.modelMapper = modelMapper;
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users")
-    public String users(Model model) {
+    public String users(Model model,
+                        @RequestParam(name = "pageNo", defaultValue = "0") Integer pageNo,
+                        @RequestParam(name = "pageSize", defaultValue = "4") Integer pageSize,
+                        @RequestParam(name = "sortBy", defaultValue = "id") String sortBy) {
 
-        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsersToDisplay(pageNo, pageSize, sortBy));
 
         return "users";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/users/details/{id}")
     public String userDetails(@PathVariable String id, Model model) {
 
@@ -52,6 +58,7 @@ public class SettingsUsersController {
         return"user-details";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping ("/users/details/{id}")
     public String userDetails(@Valid UserDetailsBindingModel userDetailsBindingModel,
                               BindingResult bindingResult,

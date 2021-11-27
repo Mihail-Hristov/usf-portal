@@ -9,11 +9,10 @@ import com.example.backend.models.service.UserLoginServiceModel;
 import com.example.backend.models.service.UserRegistrationServiceModel;
 import com.example.backend.models.view.UserDetailsViewModel;
 import com.example.backend.models.view.UserViewModel;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public interface UserService {
 
@@ -22,6 +21,8 @@ public interface UserService {
     public void sendRegistrationConfirmationEmail(User user);
 
     boolean verifyUser(String token) throws Exception;
+
+    Page<UserViewModel> getAllUsersToDisplay(Integer pageNo, Integer pageSize, String sortBy);
 
     List<UserViewModel> getAllUsers();
 

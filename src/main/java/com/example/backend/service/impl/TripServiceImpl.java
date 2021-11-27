@@ -59,7 +59,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public Page<TripViewModel> findAllTrips(Integer pageNo, Integer pageSize, String sortBy) {
 
-        PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+        PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
 
         return tripRepository.findAll(pageable)
                 .map(this::asTrip);

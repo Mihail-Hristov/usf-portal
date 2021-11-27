@@ -37,7 +37,7 @@
                     <ul class="responsive-table table-scroll">
                         <li class="table-header">
                             <div class="col col-1">Описание</div>
-                            <div class="col col-2">Тръгване</div>
+                            <div class="col col-2">Ден на мача</div>
                             <div class="col col-3">Брой пътуващи</div>
                             <div class="col col-4">Брой превозни средства</div>
                             <div class="col col-5">До</div>
@@ -57,7 +57,7 @@
             </div>
             <div class="card-footer">
                 <a th:if="${trips.hasPrevious()}" th:href="@{'/portal/trips/?pageNo=' + ${trips.getPageable().getPageNumber() - 1}}">Предишна</a>
-                <span th:text="${trips.getNumber() + 1}"></span>
+                <span th:text="|стр. ${trips.getNumber() + 1} от ${trips.getTotalPages()}|"></span>
                 <a th:if="${trips.hasNext()}" th:href="@{'/portal/trips/?pageNo=' + ${trips.getPageable().getPageNumber() + 1}}">Следваща</a>
             </div>
         </section>

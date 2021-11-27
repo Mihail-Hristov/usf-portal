@@ -7,6 +7,7 @@ import com.example.backend.models.entity.enumeration.UserRoleNameEnum;
 import com.example.backend.models.service.UserDetailsServiceModel;
 import com.example.backend.models.service.UserEditServiceModel;
 import com.example.backend.models.service.UserRegistrationServiceModel;
+import com.example.backend.models.view.TripViewModel;
 import com.example.backend.models.view.UserDetailsViewModel;
 import com.example.backend.models.view.UserViewModel;
 import com.example.backend.repository.UserRepository;
@@ -15,6 +16,9 @@ import com.example.backend.util.AccountVerificationEmailContext;
 import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
 import org.springframework.core.env.Environment;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -136,6 +140,19 @@ public class UserServiceImpl implements UserService {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Page<UserViewModel> getAllUsersToDisplay(Integer pageNo, Integer pageSize, String sortBy) {
+
+        PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        return userRepository.findAll(pageable)
+                .map(this::asUserViewModel);
+    }
+
+    private UserViewModel asUserViewModel(User user) {
+        return modelMapper.map(user, UserViewModel.class);
     }
 
     @Override

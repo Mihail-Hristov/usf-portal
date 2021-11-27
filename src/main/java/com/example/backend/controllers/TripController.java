@@ -50,7 +50,7 @@ public class TripController {
     public String trips(Model model,
                         @RequestParam(name = "pageNo", defaultValue = "0") Integer pageNo,
                         @RequestParam(name = "pageSize", defaultValue = "4") Integer pageSize,
-                        @RequestParam(name = "sortBy", defaultValue = "id") String sortBy) {
+                        @RequestParam(name = "sortBy", defaultValue = "matchDay") String sortBy) {
 
         model.addAttribute("trips", tripService.findAllTrips(pageNo, pageSize, sortBy));
 
@@ -76,6 +76,7 @@ public class TripController {
         return "trip-details";
     }
 
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
     @PostMapping("/create")
     public String createTrip(@Valid CreateTripBindingModel createTripBindingModel,
                              BindingResult bindingResult,
@@ -100,6 +101,7 @@ public class TripController {
         return "redirect:/trips";
     }
 
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
     @GetMapping("/add/vehicles/{id}")
         public String addVehicle(@PathVariable String id, Model model) {
 
@@ -117,14 +119,14 @@ public class TripController {
         return "trip-vehicle-add";
     }
 
-
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
     @PostMapping("/add/vehicles/{id}")
     public String addVehiclesToTrip(@ModelAttribute VehicleGroupBindingModel vehiclesForm,
                                     @PathVariable String id) {
 
         tripService.addVehicleToExistingTrip(modelMapper.map(vehiclesForm, VehicleGroupServiceModel.class), id);
 
-        return "redirect:/trips";
+        return "redirect:/portal/trips";
 
     }
 }

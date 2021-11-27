@@ -36,16 +36,27 @@
                         <li class="table-header">
                             <div class="col col-1">Потребител</div>
                             <div class="col col-2">Прякор</div>
+                            <div class="col col-2">Име</div>
+                            <div class="col col-2">Фамилия</div>
                             <div class="col col-3">Група</div>
 
                         </li>
                         <li th:each="u : ${users}" th:id="*{u.id}" class="table-row">
-                            <div class="col col-1" data-label="Description" th:text="*{u.username}"></div>
-                            <div class="col col-2" data-label="StartTime" th:text="*{u.nickname}"></div>
-                            <div class="col col-3" data-label="Passengers" th:text="*{u.groupName.name}"></div>
+                            <a th:href="@{/portal/settings/users/details/{id}(id= ${u.id})}" class="table-row-link">
+                                <div class="col col-1" data-label="Description" th:text="*{u.username}"></div>
+                                <div class="col col-2" data-label="StartTime" th:text="*{u.nickname}"></div>
+                                <div class="col col-1" data-label="Description" th:text="*{u.firstName}"></div>
+                                <div class="col col-1" data-label="Description" th:text="*{u.lastName}"></div>
+                                <div class="col col-3" data-label="Passengers" th:text="*{u.groupName.name}"></div>
+                            </a>
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="card-footer">
+                <a th:if="${users.hasPrevious()}" th:href="@{'/portal/trips/?pageNo=' + ${users.getPageable().getPageNumber() - 1}}">Предишна</a>
+                <span th:text="|стр. ${users.getNumber() + 1} от ${users.getTotalPages()}|"></span>
+                <a th:if="${users.hasNext()}" th:href="@{'/portal/trips/?pageNo=' + ${users.getPageable().getPageNumber() + 1}}">Следваща</a>
             </div>
         </section>
 
@@ -64,15 +75,6 @@
     sidebarBtn.addEventListener("click", ()=>{
         sidebar.classList.toggle("close");
     });
-
-    document.querySelectorAll(".table-row").forEach(el => {
-        el.addEventListener("click", (ev) => {
-            const id = ev.target.id;
-            window.location.replace("http://localhost:8080/portal/settings/users/details/" + id);
-        })
-    });
-
-
 
 </script>
 </main>

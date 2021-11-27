@@ -4,6 +4,7 @@ import com.example.backend.models.binding.TripOrganizationBindingModel;
 import com.example.backend.models.service.TripOrganizationServiceModel;
 import com.example.backend.service.TripService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,8 @@ public class TripEditRestController {
         this.modelMapper = modelMapper;
     }
 
-    @PostMapping("/api/trip/edit/{tripId}")
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
+    @PatchMapping("/api/trip/edit/{tripId}")
     public String editTrip(
             @AuthenticationPrincipal UserDetails principal,
             @PathVariable String tripId,

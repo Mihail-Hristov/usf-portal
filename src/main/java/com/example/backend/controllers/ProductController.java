@@ -5,6 +5,7 @@ import com.example.backend.models.service.CreateProductServiceModel;;
 import com.example.backend.service.ColourService;
 import com.example.backend.service.ProductService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,12 +43,14 @@ public class ProductController {
         return "products";
     }
 
+    @PreAuthorize("hasRole('MERCH_ADMIN')")
     @GetMapping("/create")
     public String viewCreateProduct(Model model) {
 
         return "product-create";
     }
 
+    @PreAuthorize("hasRole('MERCH_ADMIN')")
     @PostMapping("/create")
     public String createProduct(@Valid CreateProductBindingModel createProductBindingModel,
                                 BindingResult bindingResult,
@@ -63,7 +66,7 @@ public class ProductController {
 
         productService.createNewProduct(modelMapper.map(createProductBindingModel, CreateProductServiceModel.class), principal);
 
-        return "redirect:/products";
+        return "redirect:/portal/products";
     }
 
     @GetMapping("{id}/details")

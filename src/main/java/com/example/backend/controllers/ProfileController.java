@@ -36,6 +36,7 @@ public class ProfileController {
         this.modelMapper = modelMapper;
     }
 
+
     @GetMapping("/settings")
     public String settingsPage(Model model,
                                @AuthenticationPrincipal UserDetails principal) {

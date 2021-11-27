@@ -26,10 +26,10 @@
                 </div>
                 <ul class="sub-menu">
                     <li><a class="link_name" th:href="@{/portal/trips}">Пътувания</a></li>
-                    <li><a href="#">Предстоящи</a></li>
-                    <li><a href="#">Приключили</a></li>
-                    <li><a th:href="@{/portal/trips/create}">Ново</a></li>
-                    <li><a th:href="@{/portal/vehicles/all}">Коли</a></li>
+                    <li><a th:href="@{/portal/trips/create}" sec:authorize="hasRole('TRIP_ADMIN')">Създай пътуване</a></li>
+                    <li><a th:href="@{/portal/vehicles/all}" sec:authorize="hasRole('TRIP_ADMIN')">Коли</a></li>
+                    <li><a href="#">Градове</a></li>
+                    <li><a href="#">Държави</a></li>
                 </ul>
             </li>
             <li>
@@ -43,7 +43,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" th:href="@{/portal/products}">Артикули</a></li>
                     <li><a href="#">Моите поръчки</a></li>
-                    <li><a th:href="@{/portal/products/create}">Създай нов</a></li>
+                    <li><a th:href="@{/portal/products/create}" sec:authorize="hasRole('MERCH_ADMIN')">Добави продукт</a></li>
                 </ul>
             </li>
             <li>
@@ -64,8 +64,8 @@
                     <i class='bx bxs-chevron-down arrow'></i>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" th:href="@{portal/profiles/settings}">Настройки</a></li>
-                    <li><a th:href="@{/portal/settings/users}">Потребители</a></li>
+                    <li><a class="link_name" th:href="@{/portal/profiles/settings}">Профил</a></li>
+                    <li><a th:href="@{/portal/settings/users}" sec:authorize="hasRole('ADMIN')">Потребители</a></li>
                 </ul>
             </li>
             <li>
