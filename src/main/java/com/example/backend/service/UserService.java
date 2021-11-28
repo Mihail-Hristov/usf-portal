@@ -1,14 +1,12 @@
 package com.example.backend.service;
 
-import com.example.backend.models.binding.UserDetailsBindingModel;
-import com.example.backend.models.entity.Picture;
-import com.example.backend.models.entity.User;
-import com.example.backend.models.service.UserDetailsServiceModel;
-import com.example.backend.models.service.UserEditServiceModel;
-import com.example.backend.models.service.UserLoginServiceModel;
-import com.example.backend.models.service.UserRegistrationServiceModel;
-import com.example.backend.models.view.UserDetailsViewModel;
-import com.example.backend.models.view.UserViewModel;
+import com.example.backend.model.entity.Picture;
+import com.example.backend.model.entity.User;
+import com.example.backend.model.service.UserDetailsServiceModel;
+import com.example.backend.model.service.UserEditServiceModel;
+import com.example.backend.model.service.UserRegistrationServiceModel;
+import com.example.backend.model.view.UserDetailsViewModel;
+import com.example.backend.model.view.UserViewModel;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -39,4 +37,6 @@ public interface UserService {
     void editUser(UserEditServiceModel userEditServiceModel, UserDetails principal);
 
     void setProfilePicture(Picture picture, UserDetails principal);
+
+    void setLastLoginIp(String ip, String username);
 }

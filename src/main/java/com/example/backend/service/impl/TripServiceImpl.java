@@ -1,13 +1,13 @@
 package com.example.backend.service.impl;
 
 import com.example.backend.exceprtion.ObjectNotFoundException;
-import com.example.backend.models.entity.*;
-import com.example.backend.models.service.CarsOrganisationsServiceModel;
-import com.example.backend.models.service.CreateTripServiceModel;
-import com.example.backend.models.service.TripOrganizationServiceModel;
-import com.example.backend.models.service.VehicleGroupServiceModel;
-import com.example.backend.models.view.TripViewModel;
-import com.example.backend.models.view.VehicleVewModel;
+import com.example.backend.model.entity.*;
+import com.example.backend.model.service.CarsOrganisationsServiceModel;
+import com.example.backend.model.service.CreateTripServiceModel;
+import com.example.backend.model.service.TripOrganizationServiceModel;
+import com.example.backend.model.service.VehicleGroupServiceModel;
+import com.example.backend.model.view.TripViewModel;
+import com.example.backend.model.view.VehicleVewModel;
 import com.example.backend.repository.TripRepository;
 import com.example.backend.service.*;
 import com.example.backend.util.TripInvitationEmailContext;

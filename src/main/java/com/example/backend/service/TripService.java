@@ -1,19 +1,16 @@
 package com.example.backend.service;
 
 
-import com.example.backend.models.binding.TripOrganizationBindingModel;
-import com.example.backend.models.entity.Trip;
-import com.example.backend.models.service.CreateTripServiceModel;
-import com.example.backend.models.service.TripOrganizationServiceModel;
-import com.example.backend.models.service.VehicleGroupServiceModel;
-import com.example.backend.models.view.TripViewModel;
-import com.example.backend.models.view.VehicleVewModel;
+import com.example.backend.model.entity.Trip;
+import com.example.backend.model.service.CreateTripServiceModel;
+import com.example.backend.model.service.TripOrganizationServiceModel;
+import com.example.backend.model.service.VehicleGroupServiceModel;
+import com.example.backend.model.view.TripViewModel;
+import com.example.backend.model.view.VehicleVewModel;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 
 public interface TripService {
 

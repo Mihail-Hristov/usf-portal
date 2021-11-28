@@ -48,7 +48,7 @@
                         <div>
                             <select th:field="*{colour}" id="colour">
                                 <option value="" selected>Цвят</option>
-                                <option th:each="c : ${T(com.example.backend.models.entity.enumeration.ColourEnum).values()}" th:value="${c}" th:text="${c.name}"></option>
+                                <option th:each="c : ${T(com.example.backend.model.entity.enumeration.ColourEnum).values()}" th:value="${c}" th:text="${c.name}"></option>
                             </select>
                         </div>
                         <div>

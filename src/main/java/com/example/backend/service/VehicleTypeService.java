@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.VehicleType;
-import com.example.backend.models.entity.enumeration.VehicleTypeEnum;
+import com.example.backend.model.entity.VehicleType;
+import com.example.backend.model.entity.enumeration.VehicleTypeEnum;
 
 public interface VehicleTypeService {
 

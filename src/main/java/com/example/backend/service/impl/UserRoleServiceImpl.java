@@ -1,7 +1,7 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.UserRole;
-import com.example.backend.models.entity.enumeration.UserRoleNameEnum;
+import com.example.backend.model.entity.UserRole;
+import com.example.backend.model.entity.enumeration.UserRoleNameEnum;
 import com.example.backend.repository.UserRoleRepository;
 import com.example.backend.service.UserRoleService;
 import org.springframework.stereotype.Service;

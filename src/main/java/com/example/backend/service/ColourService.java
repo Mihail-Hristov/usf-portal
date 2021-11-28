@@ -1,8 +1,8 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.Colour;
-import com.example.backend.models.entity.enumeration.ColourEnum;
-import com.example.backend.models.view.ColourViewModel;
+import com.example.backend.model.entity.Colour;
+import com.example.backend.model.entity.enumeration.ColourEnum;
+import com.example.backend.model.view.ColourViewModel;
 
 import java.util.Set;
 

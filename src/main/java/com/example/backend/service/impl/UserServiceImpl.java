@@ -1,15 +1,14 @@
 package com.example.backend.service.impl;
 
 import com.example.backend.exceprtion.ObjectNotFoundException;
-import com.example.backend.models.entity.*;
-import com.example.backend.models.entity.enumeration.GroupNameEnum;
-import com.example.backend.models.entity.enumeration.UserRoleNameEnum;
-import com.example.backend.models.service.UserDetailsServiceModel;
-import com.example.backend.models.service.UserEditServiceModel;
-import com.example.backend.models.service.UserRegistrationServiceModel;
-import com.example.backend.models.view.TripViewModel;
-import com.example.backend.models.view.UserDetailsViewModel;
-import com.example.backend.models.view.UserViewModel;
+import com.example.backend.model.entity.*;
+import com.example.backend.model.entity.enumeration.GroupNameEnum;
+import com.example.backend.model.entity.enumeration.UserRoleNameEnum;
+import com.example.backend.model.service.UserDetailsServiceModel;
+import com.example.backend.model.service.UserEditServiceModel;
+import com.example.backend.model.service.UserRegistrationServiceModel;
+import com.example.backend.model.view.UserDetailsViewModel;
+import com.example.backend.model.view.UserViewModel;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.service.*;
 import com.example.backend.util.AccountVerificationEmailContext;
@@ -282,5 +281,17 @@ public class UserServiceImpl implements UserService {
         }
 
         return user;
+    }
+
+    @Override
+    public void setLastLoginIp(String ip, String username) {
+        User user = getUserByUsername(username);
+
+        if (user == null) {
+            throw new ObjectNotFoundException(username);
+        }
+
+        user.setLastLoginFromIp(ip);
+        userRepository.save(user);
     }
 }

@@ -1,10 +1,9 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.SecureToken;
+import com.example.backend.model.entity.SecureToken;
 import com.example.backend.repository.SecureTokenRepository;
 import com.example.backend.service.SecureTokenService;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.keygen.BytesKeyGenerator;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.stereotype.Service;
@@ -12,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class SecureTokenServiceImpl implements SecureTokenService {
@@ -60,5 +60,12 @@ public class SecureTokenServiceImpl implements SecureTokenService {
 
     public int getTokenValidityInHours() {
         return tokenValidityInHours;
+    }
+
+    @Override
+    public void deleteAllExpiredSecureTokens() {
+        List<SecureToken> secureTokens = secureTokenRepository.findAllByExpireAtBefore(LocalDateTime.now());
+
+        secureTokenRepository.deleteAll(secureTokens);
     }
 }

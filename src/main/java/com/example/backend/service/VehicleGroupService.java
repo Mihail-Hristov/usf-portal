@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.VehicleGroup;
+import com.example.backend.model.entity.VehicleGroup;
 
 public interface VehicleGroupService {
 

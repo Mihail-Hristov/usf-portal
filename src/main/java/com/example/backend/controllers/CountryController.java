@@ -1,7 +1,7 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.CountryCreateBindingModel;
-import com.example.backend.models.service.CountryCreateServiceModel;
+import com.example.backend.model.binding.CountryCreateBindingModel;
+import com.example.backend.model.service.CountryCreateServiceModel;
 import com.example.backend.service.CountryService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;

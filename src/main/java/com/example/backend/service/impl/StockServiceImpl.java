@@ -1,6 +1,6 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.Stock;
+import com.example.backend.model.entity.Stock;
 import com.example.backend.repository.StockRepository;
 import com.example.backend.service.StockService;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,9 @@
 package com.example.backend.service;
 
 
-import com.example.backend.models.entity.Vehicle;
-import com.example.backend.models.service.CreateVehicleServiceModel;
-import com.example.backend.models.view.VehicleVewModel;
+import com.example.backend.model.entity.Vehicle;
+import com.example.backend.model.service.CreateVehicleServiceModel;
+import com.example.backend.model.view.VehicleVewModel;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

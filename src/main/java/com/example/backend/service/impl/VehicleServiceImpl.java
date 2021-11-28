@@ -1,13 +1,11 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.BaseEntity;
-import com.example.backend.models.entity.Trip;
-import com.example.backend.models.entity.Vehicle;
-import com.example.backend.models.entity.User;
-import com.example.backend.models.service.CreateVehicleServiceModel;
-import com.example.backend.models.view.VehicleVewModel;
+import com.example.backend.model.entity.BaseEntity;
+import com.example.backend.model.entity.Vehicle;
+import com.example.backend.model.entity.User;
+import com.example.backend.model.service.CreateVehicleServiceModel;
+import com.example.backend.model.view.VehicleVewModel;
 import com.example.backend.repository.VehicleRepository;
-import com.example.backend.service.TripService;
 import com.example.backend.service.VehicleService;
 import com.example.backend.service.UserService;
 import com.example.backend.service.VehicleTypeService;
@@ -18,7 +16,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;

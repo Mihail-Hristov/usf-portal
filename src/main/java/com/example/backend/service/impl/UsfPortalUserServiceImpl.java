@@ -1,6 +1,6 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.User;
+import com.example.backend.model.entity.User;
 import com.example.backend.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

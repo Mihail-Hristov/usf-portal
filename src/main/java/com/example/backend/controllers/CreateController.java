@@ -1,13 +1,13 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.AddVehicleBindingModel;
+import com.example.backend.model.binding.AddVehicleBindingModel;
 import com.example.backend.service.VehicleService;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/portal/create")
+@RequestMapping("/portal/create/as")
 public class CreateController {
 
     private final VehicleService vehicleService;

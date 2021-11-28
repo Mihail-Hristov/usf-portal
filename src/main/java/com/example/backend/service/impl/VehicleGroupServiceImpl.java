@@ -1,6 +1,6 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.VehicleGroup;
+import com.example.backend.model.entity.VehicleGroup;
 import com.example.backend.repository.VehicleGroupRepository;
 import com.example.backend.service.VehicleGroupService;
 import org.springframework.stereotype.Service;

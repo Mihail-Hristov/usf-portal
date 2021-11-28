@@ -1,8 +1,8 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.Country;
-import com.example.backend.models.service.CountryCreateServiceModel;
-import com.example.backend.models.view.CountryViewModel;
+import com.example.backend.model.entity.Country;
+import com.example.backend.model.service.CountryCreateServiceModel;
+import com.example.backend.model.view.CountryViewModel;
 import com.example.backend.repository.CountryRepository;
 import com.example.backend.service.CountryService;
 import org.modelmapper.ModelMapper;
@@ -12,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service

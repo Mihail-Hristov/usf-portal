@@ -1,13 +1,11 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.Country;
-import com.example.backend.models.service.CountryCreateServiceModel;
-import com.example.backend.models.view.CountryViewModel;
-import com.example.backend.models.view.TownViewModel;
+import com.example.backend.model.entity.Country;
+import com.example.backend.model.service.CountryCreateServiceModel;
+import com.example.backend.model.view.CountryViewModel;
 import org.springframework.data.domain.Page;
 
 import java.util.Set;
-import java.util.UUID;
 
 public interface CountryService {
 

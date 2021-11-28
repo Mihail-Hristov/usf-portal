@@ -1,7 +1,7 @@
 package com.example.backend.config;
 
 
-import com.example.backend.models.entity.enumeration.UserRoleNameEnum;
+import com.example.backend.model.entity.enumeration.UserRoleNameEnum;
 import com.example.backend.service.TripService;
 import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.access.expression.method.MethodSecurityExpressionOperations;
@@ -10,7 +10,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-import java.util.List;
 
 public class TripAdminSecurityExpressionRoot extends SecurityExpressionRoot implements
         MethodSecurityExpressionOperations {

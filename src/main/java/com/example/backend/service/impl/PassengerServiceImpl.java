@@ -1,19 +1,16 @@
 package com.example.backend.service.impl;
 
 import com.example.backend.exceprtion.ObjectNotFoundException;
-import com.example.backend.models.entity.Passenger;
-import com.example.backend.models.entity.User;
-import com.example.backend.models.service.UserRegistrationServiceModel;
-import com.example.backend.models.view.PassengerViewModel;
+import com.example.backend.model.entity.Passenger;
+import com.example.backend.model.entity.User;
+import com.example.backend.model.service.UserRegistrationServiceModel;
+import com.example.backend.model.view.PassengerViewModel;
 import com.example.backend.repository.PassengerRepository;
 import com.example.backend.service.PassengerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service

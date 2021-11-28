@@ -1,8 +1,7 @@
 package com.example.backend.service;
 
 
-import com.example.backend.models.entity.Picture;
-import com.example.backend.models.view.PictureViewModel;
+import com.example.backend.model.entity.Picture;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;

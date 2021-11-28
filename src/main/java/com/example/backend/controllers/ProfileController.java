@@ -1,8 +1,8 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.PictureBindingModel;
-import com.example.backend.models.binding.UserEditBindingModel;
-import com.example.backend.models.service.UserEditServiceModel;
+import com.example.backend.model.binding.PictureBindingModel;
+import com.example.backend.model.binding.UserEditBindingModel;
+import com.example.backend.model.service.UserEditServiceModel;
 import com.example.backend.service.CloudinaryService;
 import com.example.backend.service.PictureService;
 import com.example.backend.service.UserService;

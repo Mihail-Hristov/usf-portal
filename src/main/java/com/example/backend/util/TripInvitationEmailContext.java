@@ -1,6 +1,6 @@
 package com.example.backend.util;
 
-import com.example.backend.models.view.UserViewModel;
+import com.example.backend.model.view.UserViewModel;
 import org.springframework.core.env.Environment;
 import org.springframework.web.util.UriComponentsBuilder;
 

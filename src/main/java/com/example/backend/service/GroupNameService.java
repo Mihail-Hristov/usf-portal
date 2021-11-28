@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.GroupName;
-import com.example.backend.models.entity.enumeration.GroupNameEnum;
+import com.example.backend.model.entity.GroupName;
+import com.example.backend.model.entity.enumeration.GroupNameEnum;
 
 public interface GroupNameService {
 

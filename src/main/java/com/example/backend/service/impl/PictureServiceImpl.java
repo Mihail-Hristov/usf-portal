@@ -1,7 +1,6 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.Picture;
-import com.example.backend.models.view.PictureViewModel;
+import com.example.backend.model.entity.Picture;
 import com.example.backend.repository.PictureRepository;
 import com.example.backend.service.CloudinaryService;
 import com.example.backend.service.PictureService;

@@ -1,8 +1,8 @@
 package com.example.backend.service.impl;
 
 
-import com.example.backend.models.entity.VehicleType;
-import com.example.backend.models.entity.enumeration.VehicleTypeEnum;
+import com.example.backend.model.entity.VehicleType;
+import com.example.backend.model.entity.enumeration.VehicleTypeEnum;
 import com.example.backend.repository.VehicleTypeRepository;
 import com.example.backend.service.VehicleTypeService;
 import org.springframework.stereotype.Service;

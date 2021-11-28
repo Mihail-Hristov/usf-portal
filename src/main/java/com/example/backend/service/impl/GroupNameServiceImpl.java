@@ -1,7 +1,7 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.GroupName;
-import com.example.backend.models.entity.enumeration.GroupNameEnum;
+import com.example.backend.model.entity.GroupName;
+import com.example.backend.model.entity.enumeration.GroupNameEnum;
 import com.example.backend.repository.GroupNameRepository;
 import com.example.backend.service.GroupNameService;
 import org.springframework.stereotype.Service;

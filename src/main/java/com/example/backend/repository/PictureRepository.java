@@ -1,6 +1,6 @@
 package com.example.backend.repository;
 
-import com.example.backend.models.entity.Picture;
+import com.example.backend.model.entity.Picture;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

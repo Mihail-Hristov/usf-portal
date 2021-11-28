@@ -1,10 +1,9 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.UserLoginBindingModel;
-import com.example.backend.models.binding.UserRegistrationBindingModel;
-import com.example.backend.models.entity.enumeration.GroupNameEnum;
-import com.example.backend.models.service.UserLoginServiceModel;
-import com.example.backend.models.service.UserRegistrationServiceModel;
+import com.example.backend.model.binding.UserLoginBindingModel;
+import com.example.backend.model.binding.UserRegistrationBindingModel;
+import com.example.backend.model.entity.enumeration.GroupNameEnum;
+import com.example.backend.model.service.UserRegistrationServiceModel;
 import com.example.backend.service.UserService;
 import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;

@@ -1,12 +1,12 @@
 package com.example.backend.service.impl;
 
 import com.example.backend.exceprtion.ObjectNotFoundException;
-import com.example.backend.models.entity.Colour;
-import com.example.backend.models.entity.Product;
-import com.example.backend.models.entity.Stock;
-import com.example.backend.models.entity.User;
-import com.example.backend.models.service.CreateProductServiceModel;
-import com.example.backend.models.view.ProductViewModel;
+import com.example.backend.model.entity.Colour;
+import com.example.backend.model.entity.Product;
+import com.example.backend.model.entity.Stock;
+import com.example.backend.model.entity.User;
+import com.example.backend.model.service.CreateProductServiceModel;
+import com.example.backend.model.view.ProductViewModel;
 import com.example.backend.repository.ProductRepository;
 import com.example.backend.service.*;
 import org.modelmapper.ModelMapper;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 

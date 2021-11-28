@@ -1,8 +1,8 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.Colour;
-import com.example.backend.models.entity.enumeration.ColourEnum;
-import com.example.backend.models.view.ColourViewModel;
+import com.example.backend.model.entity.Colour;
+import com.example.backend.model.entity.enumeration.ColourEnum;
+import com.example.backend.model.view.ColourViewModel;
 import com.example.backend.repository.ColourRepository;
 import com.example.backend.service.ColourService;
 import org.modelmapper.ModelMapper;

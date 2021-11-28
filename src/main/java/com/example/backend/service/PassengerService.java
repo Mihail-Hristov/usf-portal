@@ -1,13 +1,11 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.Passenger;
-import com.example.backend.models.entity.User;
-import com.example.backend.models.service.UserRegistrationServiceModel;
-import com.example.backend.models.view.PassengerViewModel;
+import com.example.backend.model.entity.Passenger;
+import com.example.backend.model.entity.User;
+import com.example.backend.model.service.UserRegistrationServiceModel;
+import com.example.backend.model.view.PassengerViewModel;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 
 public interface PassengerService {
 

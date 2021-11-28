@@ -1,8 +1,8 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.UserDetailsBindingModel;
-import com.example.backend.models.entity.enumeration.GroupNameEnum;
-import com.example.backend.models.service.UserDetailsServiceModel;
+import com.example.backend.model.binding.UserDetailsBindingModel;
+import com.example.backend.model.entity.enumeration.GroupNameEnum;
+import com.example.backend.model.service.UserDetailsServiceModel;
 import com.example.backend.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;

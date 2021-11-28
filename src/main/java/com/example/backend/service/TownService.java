@@ -1,12 +1,11 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.Town;
-import com.example.backend.models.service.TownCreateServiceModel;
-import com.example.backend.models.view.TownViewModel;
+import com.example.backend.model.entity.Town;
+import com.example.backend.model.service.TownCreateServiceModel;
+import com.example.backend.model.view.TownViewModel;
 import org.springframework.data.domain.Page;
 
 import java.util.Set;
-import java.util.UUID;
 
 public interface TownService {
 

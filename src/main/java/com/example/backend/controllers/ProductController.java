@@ -1,7 +1,7 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.CreateProductBindingModel;
-import com.example.backend.models.service.CreateProductServiceModel;;
+import com.example.backend.model.binding.CreateProductBindingModel;
+import com.example.backend.model.service.CreateProductServiceModel;;
 import com.example.backend.service.ColourService;
 import com.example.backend.service.ProductService;
 import org.modelmapper.ModelMapper;

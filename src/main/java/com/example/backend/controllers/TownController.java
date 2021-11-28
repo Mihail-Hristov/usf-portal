@@ -1,7 +1,7 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.TownCreateBindingModel;
-import com.example.backend.models.service.TownCreateServiceModel;
+import com.example.backend.model.binding.TownCreateBindingModel;
+import com.example.backend.model.service.TownCreateServiceModel;
 import com.example.backend.service.CountryService;
 import com.example.backend.service.TownService;
 import org.modelmapper.ModelMapper;

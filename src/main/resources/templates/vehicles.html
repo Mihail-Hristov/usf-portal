@@ -52,7 +52,7 @@
                         <div>
                             <select th:field="*{type}" id="type">
                                 <option value="" selected>Вид</option>
-                                <option th:each="t : ${T(com.example.backend.models.entity.enumeration.VehicleTypeEnum).values()}" th:value="${t}" th:text="${t}"></option>
+                                <option th:each="t : ${T(com.example.backend.model.entity.enumeration.VehicleTypeEnum).values()}" th:value="${t}" th:text="${t}"></option>
                             </select>
                         </div>
                         <div>

@@ -1,6 +1,6 @@
 package com.example.backend.util;
 
-import com.example.backend.models.entity.User;
+import com.example.backend.model.entity.User;
 import org.springframework.core.env.Environment;
 import org.springframework.web.util.UriComponentsBuilder;
 

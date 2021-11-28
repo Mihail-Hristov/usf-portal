@@ -1,7 +1,7 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.AddVehicleBindingModel;
-import com.example.backend.models.service.CreateVehicleServiceModel;
+import com.example.backend.model.binding.AddVehicleBindingModel;
+import com.example.backend.model.service.CreateVehicleServiceModel;
 import com.example.backend.service.VehicleService;
 import com.example.backend.service.PassengerService;
 import org.modelmapper.ModelMapper;

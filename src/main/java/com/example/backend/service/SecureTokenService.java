@@ -1,6 +1,6 @@
 package com.example.backend.service;
 
-import com.example.backend.models.entity.SecureToken;
+import com.example.backend.model.entity.SecureToken;
 
 public interface SecureTokenService {
 
@@ -13,4 +13,6 @@ public interface SecureTokenService {
     public void removeToken(SecureToken token);
 
     public void removeTokenByToken(String token);
+
+    public void deleteAllExpiredSecureTokens();
 }

@@ -1,9 +1,9 @@
 package com.example.backend.service.impl;
 
-import com.example.backend.models.entity.Country;
-import com.example.backend.models.entity.Town;
-import com.example.backend.models.service.TownCreateServiceModel;
-import com.example.backend.models.view.TownViewModel;
+import com.example.backend.model.entity.Country;
+import com.example.backend.model.entity.Town;
+import com.example.backend.model.service.TownCreateServiceModel;
+import com.example.backend.model.view.TownViewModel;
 import com.example.backend.repository.TownRepository;
 import com.example.backend.service.CountryService;
 import com.example.backend.service.TownService;

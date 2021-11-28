@@ -1,10 +1,10 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.CreateTripBindingModel;
-import com.example.backend.models.binding.VehicleGroupBindingModel;
-import com.example.backend.models.service.CreateTripServiceModel;
-import com.example.backend.models.service.VehicleGroupServiceModel;
-import com.example.backend.models.view.VehicleVewModel;
+import com.example.backend.model.binding.CreateTripBindingModel;
+import com.example.backend.model.binding.VehicleGroupBindingModel;
+import com.example.backend.model.service.CreateTripServiceModel;
+import com.example.backend.model.service.VehicleGroupServiceModel;
+import com.example.backend.model.view.VehicleVewModel;
 import com.example.backend.service.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;

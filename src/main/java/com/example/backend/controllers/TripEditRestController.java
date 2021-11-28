@@ -1,17 +1,13 @@
 package com.example.backend.controllers;
 
-import com.example.backend.models.binding.TripOrganizationBindingModel;
-import com.example.backend.models.service.TripOrganizationServiceModel;
+import com.example.backend.model.binding.TripOrganizationBindingModel;
+import com.example.backend.model.service.TripOrganizationServiceModel;
 import com.example.backend.service.TripService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class TripEditRestController {

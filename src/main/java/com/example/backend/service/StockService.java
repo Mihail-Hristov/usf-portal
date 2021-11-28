@@ -1,7 +1,7 @@
 package com.example.backend.service;
 
 
-import com.example.backend.models.entity.Stock;
+import com.example.backend.model.entity.Stock;
 
 public interface StockService {
 
