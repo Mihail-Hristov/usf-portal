@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/portal-home.css">
@@ -26,42 +26,50 @@
         <span class="text">Винаги верни на ЦСКА</span>
     </div>
     <div id="main-content">
-        <section class="trips">
+        <section class="card">
             <div class="card-header">
-                <strong>Потребители</strong>
+                <strong>Градове</strong>
+            </div>
+            <div class="card-body card-block">
+                <form th:action="@{/portal/countries/create}"
+                      th:method="POST"
+                      th:object="${countryCreateBindingModel}"
+                      class="form__group">
+                    <div>
+                        <div>
+                            <label for="name" class="form__label">Име</label>
+                            <input th:field="*{name}" type="text" class="form__input" id="name" placeholder="Име" required="" />
+                        </div>
+                    </div>
+                    <button type="submit">Създай</button>
+                </form>
+            </div>
+        </section>
+        <section class="card">
+            <div class="card-header">
+                <strong>Всички коли</strong>
             </div>
             <div class="card-body card-block">
                 <div class="container table-wrapper">
                     <ul class="responsive-table table-scroll">
                         <li class="table-header">
-                            <div class="col col-1">Потребител</div>
-                            <div class="col col-2">Прякор</div>
-                            <div class="col col-2">Име</div>
-                            <div class="col col-2">Фамилия</div>
-                            <div class="col col-3">Група</div>
-
+                            <div class="col col-1">Име</div>
                         </li>
-                        <li th:each="u : ${users}" class="table-row">
-                            <a th:href="@{/portal/settings/users/details/{id}(id= ${u.id})}" class="table-row-link">
-                                <div class="col col-1" data-label="Description" th:text="*{u.username}"></div>
-                                <div class="col col-2" data-label="StartTime" th:text="*{u.nickname}"></div>
-                                <div class="col col-1" data-label="Description" th:text="*{u.firstName}"></div>
-                                <div class="col col-1" data-label="Description" th:text="*{u.lastName}"></div>
-                                <div class="col col-3" data-label="Passengers" th:text="*{u.groupName.name}"></div>
-                            </a>
+                        <li th:each="c : ${countries}" class="table-row">
+                            <div class="col col-1" data-label="Name" th:text="*{c.name}"></div>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="card-footer">
-                <a th:if="${users.hasPrevious()}" th:href="@{'/portal/trips/?pageNo=' + ${users.getPageable().getPageNumber() - 1}}">Предишна</a>
-                <span th:text="|стр. ${users.getNumber() + 1} от ${users.getTotalPages()}|"></span>
-                <a th:if="${users.hasNext()}" th:href="@{'/portal/trips/?pageNo=' + ${users.getPageable().getPageNumber() + 1}}">Следваща</a>
+                <a th:if="${countries.hasPrevious()}" th:href="@{'/portal/countries/all/?pageNo=' + ${countries.getPageable().getPageNumber() - 1}}">Предишна</a>
+                <span th:text="|стр. ${countries.getNumber() + 1} от ${countries.getTotalPages()}|"></span>
+                <a th:if="${countries.hasNext()}" th:href="@{'/portal/countries/all?pageNo=' + ${countries.getPageable().getPageNumber() + 1}}">Следваща</a>
             </div>
         </section>
-
     </div>
 </section>
+
 <script>
     let arrow = document.querySelectorAll(".arrow");
     for (let i = 0; i < arrow.length; i++) {
@@ -72,12 +80,12 @@
     }
     let sidebar = document.querySelector(".sidebar");
     let sidebarBtn = document.querySelector(".bx-menu");
+    console.log(sidebarBtn);
     sidebarBtn.addEventListener("click", ()=>{
         sidebar.classList.toggle("close");
     });
 
 </script>
-</main>
 
 </body>
 </html>

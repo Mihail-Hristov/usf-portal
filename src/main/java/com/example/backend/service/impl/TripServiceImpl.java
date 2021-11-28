@@ -57,7 +57,7 @@ public class TripServiceImpl implements TripService {
 
     @Transactional
     @Override
-    public Page<TripViewModel> findAllTrips(Integer pageNo, Integer pageSize, String sortBy) {
+    public Page<TripViewModel> findAllTripsPagination(Integer pageNo, Integer pageSize, String sortBy) {
 
         PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
 

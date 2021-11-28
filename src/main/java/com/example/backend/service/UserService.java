@@ -22,7 +22,7 @@ public interface UserService {
 
     boolean verifyUser(String token) throws Exception;
 
-    Page<UserViewModel> getAllUsersToDisplay(Integer pageNo, Integer pageSize, String sortBy);
+    Page<UserViewModel> getAllUsersPagination(Integer pageNo, Integer pageSize, String sortBy);
 
     List<UserViewModel> getAllUsers();
 

@@ -35,7 +35,7 @@ public class SettingsUsersController {
                         @RequestParam(name = "pageSize", defaultValue = "4") Integer pageSize,
                         @RequestParam(name = "sortBy", defaultValue = "id") String sortBy) {
 
-        model.addAttribute("users", userService.getAllUsersToDisplay(pageNo, pageSize, sortBy));
+        model.addAttribute("users", userService.getAllUsersPagination(pageNo, pageSize, sortBy));
 
         return "users";
     }

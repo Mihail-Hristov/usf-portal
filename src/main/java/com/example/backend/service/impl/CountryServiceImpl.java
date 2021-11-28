@@ -1,10 +1,14 @@
 package com.example.backend.service.impl;
 
 import com.example.backend.models.entity.Country;
+import com.example.backend.models.service.CountryCreateServiceModel;
 import com.example.backend.models.view.CountryViewModel;
 import com.example.backend.repository.CountryRepository;
 import com.example.backend.service.CountryService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -47,5 +51,27 @@ public class CountryServiceImpl implements CountryService {
     @Override
     public Country findCountryById(String id) {
         return countryRepository.findAllById(id);
+    }
+
+    @Override
+    public void createNewCountry(CountryCreateServiceModel countryCreateServiceModel) {
+
+        Country country = modelMapper.map(countryCreateServiceModel, Country.class);
+
+        countryRepository.save(country);
+    }
+
+    @Override
+    public Page<CountryViewModel> getAllCountriesPagination(Integer pageNo, Integer pageSize, String sortBy) {
+
+        PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        return countryRepository.findAll(pageable)
+                .map(this::asCountryViewModel);
+
+    }
+
+    private CountryViewModel asCountryViewModel(Country country) {
+        return modelMapper.map(country, CountryViewModel.class);
     }
 }

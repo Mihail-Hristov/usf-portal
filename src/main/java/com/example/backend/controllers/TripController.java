@@ -4,7 +4,6 @@ import com.example.backend.models.binding.CreateTripBindingModel;
 import com.example.backend.models.binding.VehicleGroupBindingModel;
 import com.example.backend.models.service.CreateTripServiceModel;
 import com.example.backend.models.service.VehicleGroupServiceModel;
-import com.example.backend.models.view.TripViewModel;
 import com.example.backend.models.view.VehicleVewModel;
 import com.example.backend.service.*;
 import org.modelmapper.ModelMapper;
@@ -14,11 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.thymeleaf.util.StringUtils;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/portal/trips")
@@ -52,7 +49,7 @@ public class TripController {
                         @RequestParam(name = "pageSize", defaultValue = "4") Integer pageSize,
                         @RequestParam(name = "sortBy", defaultValue = "matchDay") String sortBy) {
 
-        model.addAttribute("trips", tripService.findAllTrips(pageNo, pageSize, sortBy));
+        model.addAttribute("trips", tripService.findAllTripsPagination(pageNo, pageSize, sortBy));
 
         return "/trips";
     }

@@ -9,10 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -38,10 +35,13 @@ public class VehicleController {
 
     @PreAuthorize("hasRole('TRIP_ADMIN')")
     @GetMapping("/all")
-    public String showAllCars(Model model) {
+    public String showAllCars(Model model,
+                              @RequestParam(name = "pageNo", defaultValue = "0") Integer pageNo,
+                              @RequestParam(name = "pageSize", defaultValue = "6") Integer pageSize,
+                              @RequestParam(name = "sortBy", defaultValue = "description") String sortBy) {
 
         model.addAttribute("passengers", passengerService.findAllPassengerWithUserId());
-        model.addAttribute("vehicles", vehicleService.getAllVehicles());
+        model.addAttribute("vehicles", vehicleService.getAllVehiclesPagination(pageNo, pageSize, sortBy));
 
         return "vehicles";
     }

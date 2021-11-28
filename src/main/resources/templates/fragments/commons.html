@@ -28,8 +28,8 @@
                     <li><a class="link_name" th:href="@{/portal/trips}">Пътувания</a></li>
                     <li><a th:href="@{/portal/trips/create}" sec:authorize="hasRole('TRIP_ADMIN')">Създай пътуване</a></li>
                     <li><a th:href="@{/portal/vehicles/all}" sec:authorize="hasRole('TRIP_ADMIN')">Коли</a></li>
-                    <li><a href="#">Градове</a></li>
-                    <li><a href="#">Държави</a></li>
+                    <li><a th:href="@{/portal/towns/all}" sec:authorize="hasRole('TRIP_ADMIN')">Градове</a></li>
+                    <li><a th:href="@{/portal/countries/all}">Държави</a></li>
                 </ul>
             </li>
             <li>

@@ -143,7 +143,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<UserViewModel> getAllUsersToDisplay(Integer pageNo, Integer pageSize, String sortBy) {
+    public Page<UserViewModel> getAllUsersPagination(Integer pageNo, Integer pageSize, String sortBy) {
 
         PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
 

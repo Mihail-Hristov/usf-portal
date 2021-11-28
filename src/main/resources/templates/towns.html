@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/css/portal-home.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+
+<nav class="sidebar close">
+  <div class="logo-details">
+    <i class='bx bx-football'></i>
+    <span class="logo_name">КСФ</span>
+  </div>
+  <div th:replace="fragments/commons :: sidebar">
+    Sidebar
+  </div>
+</nav>
+
+<section class="home-section">
+  <div class="home-content">
+    <i class="bx bx-menu"></i>
+    <span class="text">Винаги верни на ЦСКА</span>
+  </div>
+  <div id="main-content">
+    <section class="card">
+      <div class="card-header">
+        <strong>Градове</strong>
+      </div>
+      <div class="card-body card-block">
+        <form th:action="@{/portal/towns/create}"
+              th:method="POST"
+              th:object="${townCreateBindingModel}"
+              class="form__group">
+          <div>
+            <div>
+              <label for="name" class="form__label">Име</label>
+              <input th:field="*{name}" type="text" class="form__input" id="name" placeholder="Име" required="" />
+            </div>
+          </div>
+          <div>
+            <select name="country" id="country">
+              <option value="" selected>Държава</option>
+              <option th:each="c : ${destinationCountry}" th:value="${c.id}" th:text="${c.name}"></option>
+            </select>
+          </div>
+          <button type="submit">Създай</button>
+        </form>
+      </div>
+    </section>
+    <section class="card">
+      <div class="card-header">
+        <strong>Всички Градове</strong>
+      </div>
+      <div class="card-body card-block">
+        <div class="container table-wrapper">
+          <ul class="responsive-table table-scroll">
+            <li class="table-header">
+              <div class="col col-1">Име</div>
+              <div class="col col-1">Държава</div>
+            </li>
+            <li th:each="t : ${towns.content}" class="table-row">
+              <div class="col col-1" data-label="Towns" th:text="*{t.name}"></div>
+              <div class="col col-2" data-label="Country" th:text="*{t.country.name}"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a th:if="${towns.hasPrevious()}" th:href="@{'/portal/towns/all/?pageNo=' + ${towns.getPageable().getPageNumber() - 1}}">Предишна</a>
+        <span th:text="|стр. ${towns.getNumber() + 1} от ${towns.getTotalPages()}|"></span>
+        <a th:if="${towns.hasNext()}" th:href="@{'/portal/towns/all?pageNo=' + ${towns.getPageable().getPageNumber() + 1}}">Следваща</a>
+      </div>
+    </section>
+  </div>
+</section>
+
+<script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (let i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+      let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+      arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+
+</script>
+
+</body>
+</html>

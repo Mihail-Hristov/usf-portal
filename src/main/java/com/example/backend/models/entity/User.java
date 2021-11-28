@@ -22,6 +22,7 @@ public class User extends BaseEntity{
     private Set<SecureToken> secureTokens;
     private Passenger passenger;
     private Picture profilePicture;
+    private String lastLoginFromIp;
 
     public User() {
     }
@@ -134,6 +135,14 @@ public class User extends BaseEntity{
 
     public void setProfilePicture(Picture profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public String getLastLoginFromIp() {
+        return lastLoginFromIp;
+    }
+
+    public void setLastLoginFromIp(String lastLoginFromIp) {
+        this.lastLoginFromIp = lastLoginFromIp;
     }
 
     @PrePersist

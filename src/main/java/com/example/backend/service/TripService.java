@@ -17,7 +17,7 @@ import java.util.UUID;
 
 public interface TripService {
 
-    Page<TripViewModel> findAllTrips(Integer pageNo, Integer pageSize, String sortBy);
+    Page<TripViewModel> findAllTripsPagination(Integer pageNo, Integer pageSize, String sortBy);
 
     List<TripViewModel> findAllTripsByPassenger(UserDetails principal);
 

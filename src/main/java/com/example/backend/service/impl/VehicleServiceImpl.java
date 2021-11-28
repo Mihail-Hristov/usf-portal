@@ -12,6 +12,9 @@ import com.example.backend.service.VehicleService;
 import com.example.backend.service.UserService;
 import com.example.backend.service.VehicleTypeService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -84,5 +87,18 @@ public class VehicleServiceImpl implements VehicleService {
         }
 
         return test;
+    }
+
+    @Override
+    public Page<VehicleVewModel> getAllVehiclesPagination(Integer pageNo, Integer pageSize, String sortBy) {
+
+        PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy));
+
+        return vehicleRepository.findAll(pageable)
+                .map(this::asVehicleVewModel);
+    }
+
+    private VehicleVewModel asVehicleVewModel(Vehicle vehicle) {
+        return modelMapper.map(vehicle, VehicleVewModel.class);
     }
 }

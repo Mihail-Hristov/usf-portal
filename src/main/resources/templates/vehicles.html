@@ -89,7 +89,7 @@
                             <div class="col col-4">Капацитет</div>
                             <div class="col col-5">Разход</div>
                         </li>
-                        <li th:each="v : ${vehicles}" class="table-row">
+                        <li th:each="v : ${vehicles.content}" class="table-row">
                             <div class="col col-1" data-label="Description" th:text="*{v.description}"></div>
                             <div class="col col-2" data-label="Make" th:text="*{v.make}"></div>
                             <div class="col col-3" data-label="Model" th:text="*{v.model}"></div>
@@ -99,6 +99,11 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+            <div class="card-footer">
+                <a th:if="${vehicles.hasPrevious()}" th:href="@{'/portal/trips/?pageNo=' + ${vehicles.getPageable().getPageNumber() - 1}}">Предишна</a>
+                <span th:text="|стр. ${vehicles.getNumber() + 1} от ${vehicles.getTotalPages()}|"></span>
+                <a th:if="${vehicles.hasNext()}" th:href="@{'/portal/trips/?pageNo=' + ${vehicles.getPageable().getPageNumber() + 1}}">Следваща</a>
             </div>
         </section>
     </div>
