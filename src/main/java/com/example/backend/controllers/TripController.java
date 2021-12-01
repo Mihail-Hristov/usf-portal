@@ -51,7 +51,7 @@ public class TripController {
 
         model.addAttribute("trips", tripService.findAllTripsPagination(pageNo, pageSize, sortBy));
 
-        return "/trips";
+        return "trips";
     }
 
     @PreAuthorize("hasRole('TRIP_ADMIN')")

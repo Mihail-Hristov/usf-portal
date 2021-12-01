@@ -1,5 +1,6 @@
 package com.example.backend.service.impl;
 
+import com.example.backend.exceprtion.ObjectNotFoundException;
 import com.example.backend.model.entity.BaseEntity;
 import com.example.backend.model.entity.Vehicle;
 import com.example.backend.model.entity.User;
@@ -58,7 +59,13 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public Vehicle findById(String id) {
-        return vehicleRepository.findById(id).orElse(null);
+        Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
+
+        if (vehicle == null) {
+            throw new ObjectNotFoundException("id");
+        }
+
+        return vehicle;
     }
 
     @Override

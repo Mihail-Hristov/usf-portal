@@ -26,7 +26,7 @@ public class UsfPortalUserServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user = userRepository.findFirstByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User with email address" +  username + "not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User with email address" +  username + " not found"));
 
         if (!user.isActive()) {
             throw new UsernameNotFoundException("The user is not activate");
