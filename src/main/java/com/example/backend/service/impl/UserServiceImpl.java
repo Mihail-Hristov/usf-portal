@@ -11,9 +11,10 @@ import com.example.backend.model.view.UserDetailsViewModel;
 import com.example.backend.model.view.UserViewModel;
 import com.example.backend.repository.UserRepository;
 import com.example.backend.service.*;
+import com.example.backend.service.event.UserCreatedEvent;
 import com.example.backend.util.AccountVerificationEmailContext;
-import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -41,10 +42,10 @@ public class UserServiceImpl implements UserService {
     private final SecureTokenService secureTokenService;
     private final PassengerService passengerService;
     private final SpringTemplateEngine templateEngine;
-    private final Gson gson;
+    private final ApplicationEventPublisher eventPublisher;
     private final Environment env;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleService userRoleService, GroupNameService groupNameService, ModelMapper modelMapper, EmailService emailService, SecureTokenService secureTokenService, PassengerService passengerService, SpringTemplateEngine templateEngine, Gson gson, Environment env) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, UserRoleService userRoleService, GroupNameService groupNameService, ModelMapper modelMapper, EmailService emailService, SecureTokenService secureTokenService, PassengerService passengerService, SpringTemplateEngine templateEngine, ApplicationEventPublisher eventPublisher, Environment env) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.userRoleService = userRoleService;
@@ -54,7 +55,7 @@ public class UserServiceImpl implements UserService {
         this.secureTokenService = secureTokenService;
         this.passengerService = passengerService;
         this.templateEngine = templateEngine;
-        this.gson = gson;
+        this.eventPublisher = eventPublisher;
         this.env = env;
     }
 
@@ -108,7 +109,9 @@ public class UserServiceImpl implements UserService {
         }
 
         this.userRepository.save(user);
-        this.passengerService.addNewPassenger(userRequest, user);
+
+        UserCreatedEvent userCreatedEvent = new UserCreatedEvent(this, user, userRequest);
+        eventPublisher.publishEvent(userCreatedEvent);
 
         sendRegistrationConfirmationEmail(user);
 
