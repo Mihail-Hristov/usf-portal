@@ -46,10 +46,12 @@ public class TripController {
     @GetMapping()
     public String trips(Model model,
                         @RequestParam(name = "pageNo", defaultValue = "0") Integer pageNo,
-                        @RequestParam(name = "pageSize", defaultValue = "4") Integer pageSize,
+                        @RequestParam(name = "pageSize", defaultValue = "7") Integer pageSize,
                         @RequestParam(name = "sortBy", defaultValue = "matchDay") String sortBy) {
 
         model.addAttribute("trips", tripService.findAllTripsPagination(pageNo, pageSize, sortBy));
+        model.addAttribute("vehiclesCount", vehicleService.getAllVehicles().size());
+        model.addAttribute("passengersCount", passengerService.findAllPassengers().size());
 
         return "trips";
     }
@@ -125,5 +127,13 @@ public class TripController {
 
         return "redirect:/portal/trips";
 
+    }
+
+    @GetMapping("/{id}/view")
+    public String viewTrip(@PathVariable String id, Model model) {
+
+        model.addAttribute("trip", tripService.findById(id));
+
+        return "trip-view";
     }
 }

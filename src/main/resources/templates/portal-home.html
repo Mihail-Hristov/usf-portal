@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/portal-home.css">
+    <link rel="stylesheet" href="/css/portal.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -26,48 +29,82 @@
         <i class="bx bx-menu"></i>
         <span class="text">Винаги верни на ЦСКА</span>
     </div>
-    <div id="main-content home-cards">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Предстоящи пътувания</strong>
-                </div>
-                <div class="card-body card-block">
-                    <div class="container table-wrapper">
-                        <ul class="responsive-table table-scroll">
-                            <li class="table-header">
-                                <div class="col col-1">До</div>
-                                <div class="col col-2">Име</div>
-                            </li>
-                            <li th:each="t : ${upcomingTrips}" class="table-row">
-                                <div class="col col-1" data-label="Description" th:text="*{t.destinationTown.name}"></div>
-                                <div class="col col-2" data-label="Make" th:text="*{t.name}"></div>
-                            </li>
-                        </ul>
+
+    <section class="container">
+        <h1>Предстоящи пътувания</h1>
+        <div class="row tickets">
+            <article th:each="t : ${upcomingTrips}" class="card fl-left">
+                <section class="date">
+                    <time th:datetime="*{t.matchDay}">
+                        <span th:text="${#temporals.day(t.matchDay)}">23</span><span th:text="${#temporals.monthNameShort(t.matchDay)}">feb</span>
+                    </time>
+                </section>
+                <section class="card-cont">
+                    <small>организирано пътуване</small>
+                    <h3 th:text="*{t.name}">...</h3>
+                    <div class="even-date">
+                        <i class="fa fa-calendar"></i>
+                        <time>
+                            <span th:text="*{t.matchDay}"></span>
+                        </time>
+                    </div>
+                    <div class="even-info">
+                        <i class="fa fa-map-marker"></i>
+                        <p th:text="|*{t.destinationTown.name} , *{t.destinationCountry.name}|">...</p>
+                    </div>
+                    <a th:href="@{portal/trips/{id}/view(id= ${t.id})}">Преглед</a>
+                </section>
+            </article>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- coming soon
+    <div class="container">
+        <div th:each="p : ${myProducts}" class="col-xs-12 col-md-6 bootstrap snippets bootdeys">
+
+            <div class="product-content product-wrap clearfix">
+                <div class="row">
+                    <div class="col-md-5 col-sm-12 col-xs-12">
+                        <div class="product-image">
+                            <img src="https://via.placeholder.com/194x228/87CEFA" alt="194x228" class="img-responsive">
+                            <span class="tag2 hot">
+							HOT
+						</span>
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-sm-12 col-xs-12">
+                        <div class="product-deatil">
+                            <h5 class="name" th:text="*{p.name}">
+                                <a href="#">
+                                    Product Name Title Here <span>Category</span>
+                                </a>
+                            </h5>
+                            <p class="price-container">
+                                <span th:text="*{p.price}">$99</span>
+                            </p>
+                            <span class="tag1"></span>
+                        </div>
+                        <div class="description">
+                            <p>Proin in ullamcorper lorem. Maecenas eu ipsum </p>
+                        </div>
+                        <div class="product-info smart-form">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-        <div class="card">
-                    <div class="card-header">
-                        <strong>Моите поръчки</strong>
-                    </div>
-                    <div class="card-body card-block">
-                        <div class="container table-wrapper">
-                            <ul class="responsive-table table-scroll">
-                                <li class="table-header">
-                                    <div class="col col-1">Продукт</div>
-                                    <div class="col col-2">Цена</div>
-                                </li>
-                                <li th:each="p : ${myProducts}" class="table-row">
-                                    <div class="col col-1" data-label="Description" th:text="*{p.name}"></div>
-                                    <div class="col col-2" data-label="Make" th:text="*{p.price}"></div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        -->
 
     </div>
+
 </section>
 <script>
     let arrow = document.querySelectorAll(".arrow");

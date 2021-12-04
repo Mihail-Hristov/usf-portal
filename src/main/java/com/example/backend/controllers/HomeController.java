@@ -23,7 +23,7 @@ public class HomeController {
     public String portalHome(Model model,
                              @AuthenticationPrincipal UserDetails principal) {
 
-        model.addAttribute("upcomingTrips", tripService.findAllTripsByPassenger(principal));
+        model.addAttribute("upcomingTrips", tripService.findFirstTwoUpcomingTrips());
         model.addAttribute("myProducts", productService.getAllProducts());
 
         return "portal-home";

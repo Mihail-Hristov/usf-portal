@@ -33,7 +33,7 @@ public class Passenger extends BaseEntity{
         isDriver = driver;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     public User getUser() {
         return user;
     }

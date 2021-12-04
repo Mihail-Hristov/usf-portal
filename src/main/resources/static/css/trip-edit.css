@@ -1,0 +1,352 @@
+/* custom */
+
+.card {
+    border-radius: 5px;
+    margin: 15px;
+    width: 45%;
+    padding: 0;
+    display: inline-block;
+    border: 0px solid transparent;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+.trips {
+    border-radius: 5px;
+    margin: 15px;
+    width: 80%;
+    padding: 0;
+    border: 0px solid transparent;
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+}
+
+.card-header {
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.card .card-body {
+    float: left;
+    padding: 1.25em;
+    position: relative;
+    width: 100%;
+}
+
+.trips .card-body {
+    float: left;
+    padding: 1.25em;
+    position: relative;
+    width: 100%;
+}
+
+.users {
+    background: #fff;
+    margin: 15px;
+    width: 45%;
+    border-radius: 10px;
+    border: 0px solid transparent;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.trips {
+    background: #fff;
+    margin: 15px;
+    width: 85%;
+    border-radius: 10px;
+    border: 0px solid transparent;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.create-trip-card {
+    background: #fff;
+    margin: 15px;
+    width: 85%;
+    border-radius: 10px;
+    border: 0px solid transparent;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+}
+
+.card .box-title {
+    font-weight: 600;
+    font-size: 1em;
+    padding: 5px 0;
+}
+
+.trips .box-title {
+    font-weight: 600;
+    font-size: 1em;
+    padding: 5px 0;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+.table-stats table th {
+    border: none;
+    border-bottom: 1px solid #e8e9ef;
+    color: #868e96;
+    font-size: 12px;
+    text-align: left;
+    font-weight: normal;
+    padding: .75em 1.25em;
+    text-transform: uppercase;
+}
+
+.order-table tr th {
+    background: #e8e9ef;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.table-stats table td {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    vertical-align: middle;
+    border: none;
+    border-bottom: 1px solid #e8e9ef;
+    padding: .75em 1.25em;
+}
+
+.container {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h2 {
+    font-size: 26px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.responsive-table
+li {
+    border-radius: 3px;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+.table-header {
+    background-color: #95A5A6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+
+.responsive-table li.table-row {
+    padding: 0;
+}
+
+.table-row:hover {
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,1.1);
+}
+
+.table-row-link {
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    padding: 25px 30px;
+}
+
+.col-1 {
+    flex-basis: 20%;
+}
+.col-2 {
+    flex-basis: 20%;
+}
+.col-3 {
+    flex-basis: 20%;
+}
+.col-4 {
+    flex-basis: 20%;
+}
+
+.col-5 {
+    flex-basis: 20%;
+}
+
+@media all and (max-width: 767px) {
+    .table-header {
+        display: none;
+    }
+    .table-row{
+
+    }
+    li {
+        display: block;
+    }
+    .col {
+
+        flex-basis: 100%;
+
+    }
+    .col {
+        display: flex;
+        padding: 10px 0;
+    }
+}
+
+#table-wrapper {
+    position:relative;
+}
+#table-scroll {
+    height:150px;
+    overflow:auto;
+    margin-top:20px;
+}
+
+.new-trip {
+    position: absolute;
+    right: 0px;
+}
+
+.drag
+{
+    border: 1px solid #ccc;
+    color:blue;
+    width:100px;
+    display: inline-block;
+}
+.drop
+{
+    border: 1px solid #ccc;
+    color:blue;
+    width:150px;
+    height:200px;
+}
+
+.drop-passengers
+{
+    border: 1px solid #ccc;
+    color:blue;
+    width:150px;
+    height:200px;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switch_bar {
+    display: block;
+}
+
+#box select {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 12px;
+    width: 270px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    font-size: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+}
+
+#box:hover::before {
+    color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#box select option {
+    padding: 30px;
+}
+
+/* trip details */
+
+.trip-section {
+    display: inline-block;
+    position: relative;
+}
+
+/* Home grid */
+
+.home-cards {
+    max-width: 1256px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 560px) {
+    .home-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .home-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* trip details */
+
+.trip-details {
+    display: flex;
+}
+
+.trip-section {
+    flex: 1 0;
+}
+.trip-section.mod-vehicles {
+    flex: 2 0;
+}
+
+/* home cards */
+
+.home-card {
+    max-width: 1256px;
+    margin: 0 auto;
+    padding: 0 15px;
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+}

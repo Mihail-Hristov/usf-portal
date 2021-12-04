@@ -18,6 +18,8 @@ public interface TripService {
 
     List<TripViewModel> findAllTripsByPassenger(UserDetails principal);
 
+    List<TripViewModel> findFirstTwoUpcomingTrips();
+
     TripViewModel createNewTrip(CreateTripServiceModel createTripServiceModel);
 
     TripViewModel findById(String id);

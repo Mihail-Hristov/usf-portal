@@ -45,12 +45,12 @@ document.querySelector(".edit").addEventListener("click", (ev) => {
 
      patchData(final);
 
-    window.location.replace("http://localhost:8080/portal/trips");
+    window.location.replace("http://localhost:8080/portal");
 })
 
 async function patchData(obj) {
     const response =  await fetch(`http://localhost:8080/api/trip/edit/${tripId}`, {
-        method: 'POST',
+        method: 'PATCH',
         headers : {
             'Content-Type': 'application/json'
         },

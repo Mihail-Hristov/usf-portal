@@ -34,6 +34,6 @@ public class TripEditRestController {
 
 
 
-        return "redirect:/trips";
+        return "redirect:/portal";
     }
 }

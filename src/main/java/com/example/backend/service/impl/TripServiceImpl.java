@@ -23,6 +23,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.MessagingException;
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -62,11 +63,11 @@ public class TripServiceImpl implements TripService {
         PageRequest pageable = PageRequest.of(pageNo, pageSize, Sort.by(sortBy).descending());
 
         return tripRepository.findAll(pageable)
-                .map(this::asTrip);
+                .map(this::asTripViewModel);
 
     }
 
-    private TripViewModel asTrip(Trip trip) {
+    private TripViewModel asTripViewModel(Trip trip) {
         return modelMapper.map(trip, TripViewModel.class);
     }
 
@@ -247,6 +248,16 @@ public class TripServiceImpl implements TripService {
         return tripRepository.findAllByTripPassengersContainsOrderByMatchDayDesc(passenger)
                 .stream()
                 .map(trip -> modelMapper.map(trip, TripViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    @Override
+    public List<TripViewModel> findFirstTwoUpcomingTrips() {
+
+        return tripRepository.findAllByMatchDayAfterOrderByMatchDayDesc(LocalDate.now())
+                .stream()
+                .map(this::asTripViewModel)
                 .collect(Collectors.toList());
     }
 }
