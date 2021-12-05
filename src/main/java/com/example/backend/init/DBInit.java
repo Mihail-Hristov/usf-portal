@@ -12,13 +12,15 @@ public class DBInit implements CommandLineRunner {
     private final CountryService countryService;
     private final TownService townService;
     private final ColourService colourService;
+    private final UserService userService;
 
-    public DBInit(GroupNameService groupNameService, UserRoleService userRoleService, CountryService countryService, TownService townService, ColourService colourService) {
+    public DBInit(GroupNameService groupNameService, UserRoleService userRoleService, CountryService countryService, TownService townService, ColourService colourService, UserService userService) {
         this.groupNameService = groupNameService;
         this.userRoleService = userRoleService;
         this.countryService = countryService;
         this.townService = townService;
         this.colourService = colourService;
+        this.userService = userService;
     }
 
     @Override
@@ -28,5 +30,6 @@ public class DBInit implements CommandLineRunner {
         countryService.initCountries();
         townService.initTowns();
         colourService.initColours();
+        userService.initAdmin();
     }
 }
