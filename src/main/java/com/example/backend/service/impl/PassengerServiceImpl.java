@@ -27,6 +27,25 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
+    public void initPassengers() {
+
+        if (passengerRepository.count() != 0) {
+            return;
+        }
+
+        Passenger passenger1 = new Passenger();
+        passenger1.setName("Скури");
+        passenger1.setDriver(true);
+
+        Passenger passenger2 = new Passenger();
+        passenger2.setName("Мишо");
+        passenger2.setDriver(true);
+
+        passengerRepository.save(passenger1);
+        passengerRepository.save(passenger2);
+    }
+
+    @Override
     public boolean addNewPassenger(UserRegistrationServiceModel userRequest, User user) {
 
         Passenger passenger = new Passenger();

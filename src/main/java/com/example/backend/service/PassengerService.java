@@ -11,6 +11,8 @@ public interface PassengerService {
 
     boolean addNewPassenger(UserRegistrationServiceModel userRequest, User user);
 
+    void initPassengers();
+
     public List<PassengerViewModel> findAllPassengerWithUserId();
 
     public List<PassengerViewModel> findAllPassengers();
