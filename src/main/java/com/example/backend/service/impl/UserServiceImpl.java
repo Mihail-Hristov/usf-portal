@@ -76,22 +76,18 @@ public class UserServiceImpl implements UserService {
 
         Set<UserRole> roles = new HashSet<>();
 
-        UserRole userRoleAdmin = new UserRole();
-        userRoleAdmin.setName(UserRoleNameEnum.ADMIN);
+        UserRole userRoleAdmin = userRoleService.findUserRoleByName(UserRoleNameEnum.ADMIN);
         roles.add(userRoleAdmin);
 
-        UserRole userRoleUsf = new UserRole();
-        userRoleUsf.setName(UserRoleNameEnum.USF_MEMBER);
+        UserRole userRoleUsf = userRoleService.findUserRoleByName(UserRoleNameEnum.USF_MEMBER);
         roles.add(userRoleUsf);
 
-        UserRole userRoleGuest = new UserRole();
-        userRoleGuest.setName(UserRoleNameEnum.GUEST);
+        UserRole userRoleGuest = userRoleService.findUserRoleByName(UserRoleNameEnum.GUEST);
         roles.add(userRoleGuest);
 
         user.setRoles(roles);
 
-        GroupName groupName = new GroupName();
-        groupName.setName(GroupNameEnum.USF);
+        GroupName groupName = groupNameService.findGroupByName(GroupNameEnum.USF);
         user.setGroupName(groupName);
 
         userRepository.save(user);
