@@ -29,7 +29,7 @@ public class VehicleController {
     }
 
     @ModelAttribute
-    public AddVehicleBindingModel addCarBindingModel() {
+    public AddVehicleBindingModel addVehicleBindingModel() {
         return new AddVehicleBindingModel();
     }
 
@@ -57,11 +57,11 @@ public class VehicleController {
             redirectAttributes.addFlashAttribute("addVehicleBindingModel", addVehicleBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.addVehicleBindingModel", bindingResult);
 
-            return "redirect:all";
+            return "redirect:/portal/vehicles/all";
         }
 
         vehicleService.create(modelMapper.map(addVehicleBindingModel, CreateVehicleServiceModel.class));
 
-        return "redirect:all";
+        return "redirect:/all";
     }
 }

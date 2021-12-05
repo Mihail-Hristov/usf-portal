@@ -3,6 +3,7 @@ package com.example.backend.model.binding;
 import com.example.backend.model.entity.enumeration.VehicleTypeEnum;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class AddVehicleBindingModel {
 
@@ -25,6 +26,8 @@ public class AddVehicleBindingModel {
         this.owner = owner;
     }
 
+    @NotNull
+    @Size(min = 5, max = 20, message = "Името трябва да е между 5 и 20 символа включително!")
     public String getDescription() {
         return description;
     }
@@ -33,7 +36,7 @@ public class AddVehicleBindingModel {
         this.description = description;
     }
 
-    @NotNull
+    @NotNull(message = "Задължително е да се посочи марка!")
     public String getMake() {
         return make;
     }
@@ -42,7 +45,7 @@ public class AddVehicleBindingModel {
         this.make = make;
     }
 
-    @NotNull
+    @NotNull(message = "Задължително е да се посочи модел!")
     public String getModel() {
         return model;
     }
@@ -51,7 +54,7 @@ public class AddVehicleBindingModel {
         this.model = model;
     }
 
-    @NotNull
+    @NotNull(message = "Задължително е да се посочи тип!")
     public VehicleTypeEnum getType() {
         return type;
     }
@@ -60,7 +63,7 @@ public class AddVehicleBindingModel {
         this.type = type;
     }
 
-    @NotNull
+    @NotNull(message = "Задължително е да се посочи капацитет!")
     public int getCapacity() {
         return capacity;
     }
@@ -69,7 +72,7 @@ public class AddVehicleBindingModel {
         this.capacity = capacity;
     }
 
-    @NotNull
+    @NotNull(message = "Задължително е да се посочи разход!")
     public double getFuelConsumption() {
         return fuelConsumption;
     }

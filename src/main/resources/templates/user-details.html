@@ -46,18 +46,30 @@
                                 <label for="inputEmail">Имейл</label>
                                 <input th:field="*{username}"  type="email" class="form-control" id="inputEmail" placeholder="Имейл">
                             </div>
+                            <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <div class="form-group col-md-6">
                                 <label for="inputFirstname">Име</label>
                                 <input th:field="*{firstName}" type="text" class="form-control" id="inputFirstname" placeholder="Име">
                             </div>
+                            <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <div class="form-group col-md-6">
                                 <label for="inputLastname">Фамилия</label>
                                 <input th:field="*{lastName}" type="text" class="form-control" id="inputLastname" placeholder="Фамилия">
                             </div>
+                            <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <div class="form-group col-md-6">
                                 <label for="inputNickname">Прякор</label>
                                 <input th:field="*{nickname}" type="text" class="form-control" id="inputNickname" placeholder="Прякор">
                             </div>
+                            <small th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <div class="form-group col-md-6">
                                 <label for="inputState">Група</label>
                                 <select th:name="groupName" id="inputState" class="form-control">
@@ -68,6 +80,9 @@
                                     </option>
                                 </select>
                             </div>
+                            <small th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                         </div>
 
                     <hr class="my-4" />
@@ -76,7 +91,6 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <strong class="mb-0">Активен</strong>
-                                    <p class="text-muted mb-0">Fusce lacinia elementum eros, sed vulputate urna eleifend nec.</p>
                                 </div>
                                 <div class="col-auto">
                                     <div class="custom-control custom-switch">
@@ -90,7 +104,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <strong class="mb-0">Администратор на пътувания</strong>
-                                    <p class="text-muted mb-0">Donec in quam sed urna bibendum tincidunt quis mollis mauris.</p>
+                                    <p class="text-muted mb-0">Потребителя ще може да създава и редактира пътувания, превозни средства и населени места.</p>
                                 </div>
                                 <div class="col-auto">
                                     <div class="custom-control custom-switch">
@@ -104,7 +118,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <strong class="mb-0">Администратор на продукти</strong>
-                                    <p class="text-muted mb-0">Fusce lacinia elementum eros, sed vulputate urna eleifend nec.</p>
+                                    <p class="text-muted mb-0">Потребителя ще може да създава и редактира продукти.</p>
                                 </div>
                                 <div class="col-auto">
                                     <div class="custom-control custom-switch">
@@ -118,7 +132,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <strong class="mb-0">Администратор на чл. внос</strong>
-                                    <p class="text-muted mb-0">Fusce lacinia elementum eros, sed vulputate urna eleifend nec.</p>
+                                    <p class="text-muted mb-0">Потребителя ще може да отразява плащането на членски внос.</p>
                                 </div>
                                 <div class="col-auto">
                                     <div class="custom-control custom-switch">

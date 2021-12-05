@@ -7,6 +7,7 @@ import com.example.backend.model.service.UserRegistrationServiceModel;
 import com.example.backend.service.UserService;
 import com.google.gson.Gson;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +31,7 @@ public class UserController {
         this.modelMapper = modelMapper;
     }
 
-    @ModelAttribute("userModel")
+    @ModelAttribute
     public UserRegistrationBindingModel userModel() {
         return new UserRegistrationBindingModel();
     }
@@ -50,23 +51,23 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid UserRegistrationBindingModel userRequest,
+    public String register(@Valid UserRegistrationBindingModel userRegistrationBindingModel,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
 
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("userModel", userRequest);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userModel", bindingResult);
+            redirectAttributes.addFlashAttribute("userRegistrationBindingModel", userRegistrationBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegistrationBindingModel", bindingResult);
 
-            return "redirect:/users/register";
+            return "redirect:/portal/users/register";
         }
 
         UserRegistrationServiceModel serviceModel = modelMapper
-                .map(userRequest, UserRegistrationServiceModel.class);
+                .map(userRegistrationBindingModel, UserRegistrationServiceModel.class);
 
         userService.register(serviceModel);
 
-        return "redirect:/users/login";
+        return "redirect:/portal/users/login";
     }
 
     @GetMapping("/register/verify")
@@ -80,12 +81,24 @@ public class UserController {
             return "Verify error!";
         }
 
-        return "redirect:login";
+        return "redirect:/portal/users/login";
     }
 
     @GetMapping("/login")
     public String login(Model model) {
 
         return "login";
+    }
+
+    @PostMapping("/login-error")
+    public String loginError(
+            @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+            String username,
+            RedirectAttributes redirectAttributes
+            ) {
+
+        redirectAttributes.addFlashAttribute("bad_credentials", true);
+
+        return "redirect:/portal/users/login";
     }
 }

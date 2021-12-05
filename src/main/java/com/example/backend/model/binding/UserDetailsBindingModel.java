@@ -1,5 +1,11 @@
 package com.example.backend.model.binding;
 
+import com.example.backend.validator.UniqueUsername;
+import com.sun.istack.NotNull;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
 public class UserDetailsBindingModel {
 
     private String username;
@@ -15,6 +21,9 @@ public class UserDetailsBindingModel {
     public UserDetailsBindingModel() {
     }
 
+    @NotNull
+    @Email(message = "The email is not valid!", regexp = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")
+    @Size(max = 50, message = "The email address must be less then 50 characters!")
     public String getUsername() {
         return username;
     }
@@ -23,6 +32,8 @@ public class UserDetailsBindingModel {
         this.username = username;
     }
 
+    @NotNull
+    @Size(max = 50, message = "The first name must be not smaller then 50 characters!")
     public String getFirstName() {
         return firstName;
     }
@@ -31,6 +42,8 @@ public class UserDetailsBindingModel {
         this.firstName = firstName;
     }
 
+    @NotNull
+    @Size(max = 70, message = "The last name must be not smaller then 70 characters!")
     public String getLastName() {
         return lastName;
     }
@@ -39,6 +52,7 @@ public class UserDetailsBindingModel {
         this.lastName = lastName;
     }
 
+    @Size(max = 40, message = "The nickname must be no larger than 40 symbols!")
     public String getNickname() {
         return nickname;
     }
@@ -47,6 +61,7 @@ public class UserDetailsBindingModel {
         this.nickname = nickname;
     }
 
+    @NotNull
     public String getGroupName() {
         return groupName;
     }

@@ -94,7 +94,6 @@ public class UserRegistrationBindingModel {
         this.groupName = groupName;
     }
 
-    @NotNull
     public boolean isDriver() {
         return isDriver;
     }

@@ -4,6 +4,8 @@ package com.example.backend.model.binding;
 import com.example.backend.model.entity.enumeration.ColourEnum;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 public class CreateProductBindingModel {
@@ -24,6 +26,8 @@ public class CreateProductBindingModel {
     public CreateProductBindingModel() {
     }
 
+    @NotNull
+    @Size(min = 3, max = 20, message = "Задължително е да въведете между 3 и 20 символа!")
     public String getName() {
         return name;
     }
@@ -32,6 +36,8 @@ public class CreateProductBindingModel {
         this.name = name;
     }
 
+    @NotNull
+    @Size(max = 40, message = "Въведете не повече от 40 символа")
     public String getDescription() {
         return description;
     }
@@ -40,6 +46,7 @@ public class CreateProductBindingModel {
         this.description = description;
     }
 
+    @NotNull
     public ColourEnum getColour() {
         return colour;
     }
@@ -48,6 +55,7 @@ public class CreateProductBindingModel {
         this.colour = colour;
     }
 
+    @NotNull
     public BigDecimal getPrice() {
         return price;
     }
@@ -56,6 +64,7 @@ public class CreateProductBindingModel {
         this.price = price;
     }
 
+    @NotNull
     public MultipartFile getPicture() {
         return picture;
     }

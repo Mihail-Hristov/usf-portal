@@ -48,6 +48,9 @@
                                 </div>
                                 <input th:field="*{name}" type="text" class="col-sm-3 text-secondary"/>
                             </div>
+                            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-2">
@@ -55,6 +58,9 @@
                                 </div>
                                 <input th:field="*{description}" type="text" class="col-sm-4 text-secondary"/>
                             </div>
+                            <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-2">
@@ -64,6 +70,9 @@
                                     <input th:field="*{price}" type="number" class="col-sm-4 text-secondary"/>
                                 </div>
                             </div>
+                            <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="form-group col-md-2">
                                 <label for="inputColour">Цвят</label>
@@ -74,11 +83,17 @@
                                     </option>
                                 </select>
                             </div>
+                            <small th:if="${#fields.hasErrors('colour')}" th:errors="*{colour}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="mb-3">
                                 <label for="formFile">Снимка</label>
                                 <input class="form-control" type="file" id="formFile" name="picture">
                             </div>
+                            <small th:if="${#fields.hasErrors('picture')}" th:errors="*{picture}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">

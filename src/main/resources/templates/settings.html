@@ -61,6 +61,9 @@
                                             <h6 class="mb-0">Име</h6>
                                         </div>
                                         <input class="col-sm-9 text-secondary" th:field="*{firstName}"/>
+                                        <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="bg-danger text-light rounded">
+                                            Грешка
+                                        </small>
                                     </div>
                                     <hr>
                                     <div class="row">
@@ -68,6 +71,9 @@
                                             <h6 class="mb-0">Фамилия</h6>
                                         </div>
                                         <input class="col-sm-9 text-secondary" th:field="*{lastName}"/>
+                                        <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="bg-danger text-light rounded">
+                                            Грешка
+                                        </small>
                                     </div>
                                     <hr>
                                     <div class="row">
@@ -83,6 +89,9 @@
                                             <h6 class="mb-0">Прякор</h6>
                                         </div>
                                         <input class="col-sm-9 text-secondary" th:field="*{nickname}"/>
+                                        <small th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}" class="bg-danger text-light rounded">
+                                            Грешка
+                                        </small>
                                     </div>
                                     <hr>
                                     <div class="row">

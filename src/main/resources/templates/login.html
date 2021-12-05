@@ -13,6 +13,9 @@
           th:method="POST"
           th:object="${userLoginModel}"
           id="login-form">
+    <p th:if="${bad_credentials}" class="errors alert alert-danger">
+      Невалидно потребителско име или парола.
+    </p>
     <div class="field">
       <input
               th:field="*{username}"

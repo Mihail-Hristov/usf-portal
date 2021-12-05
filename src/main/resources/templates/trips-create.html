@@ -48,6 +48,9 @@
                                 </div>
                                 <input th:field="*{name}" placeholder="Име" required="" class="col-sm-3 text-secondary"/>
                             </div>
+                            <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="form-group col-md-2">
                                 <label for="destinationTown">Населено място</label>
@@ -59,6 +62,9 @@
                                     </option>
                                 </select>
                             </div>
+                            <small th:if="${#fields.hasErrors('destinationTown')}" th:errors="*{destinationTown}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="form-group col-md-2">
                                 <label for="destinationCountry">Държава</label>
@@ -70,6 +76,9 @@
                                     </option>
                                 </select>
                             </div>
+                            <small th:if="${#fields.hasErrors('destinationCountry')}" th:errors="*{destinationCountry}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="field">
                                 <label>Ден на мача</label>
@@ -78,6 +87,9 @@
                                         type="date"
                                         required/>
                             </div>
+                            <small th:if="${#fields.hasErrors('matchDay')}" th:errors="*{matchDay}" class="bg-danger text-light rounded">
+                                Грешка
+                            </small>
                             <hr>
                             <div class="input-box">
                                 <label for="sendEmail" class="form__label">Изпрати имейл с покана</label>

@@ -3,6 +3,8 @@ package com.example.backend.model.binding;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 public class CreateTripBindingModel {
@@ -16,6 +18,8 @@ public class CreateTripBindingModel {
     public CreateTripBindingModel() {
     }
 
+    @NotNull
+    @Size(min = 3, max = 20, message = "Въведе име между 3 и 20 символа!")
     public String getName() {
         return name;
     }
@@ -24,6 +28,7 @@ public class CreateTripBindingModel {
         this.name = name;
     }
 
+    @NotNull
     public String getDestinationTown() {
         return destinationTown;
     }
@@ -32,6 +37,7 @@ public class CreateTripBindingModel {
         this.destinationTown = destinationTown;
     }
 
+    @NotNull
     public String getDestinationCountry() {
         return destinationCountry;
     }
@@ -40,7 +46,7 @@ public class CreateTripBindingModel {
         this.destinationCountry = destinationCountry;
     }
 
-    @FutureOrPresent
+    @FutureOrPresent(message = "Въведете бъдеща дата!")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     public LocalDate getMatchDay() {
         return matchDay;
