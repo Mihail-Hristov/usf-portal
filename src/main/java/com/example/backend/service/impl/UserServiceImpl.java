@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService {
         this.env = env;
     }
 
+    @Transactional
     @Override
     public void initAdmin() {
         if (userRepository.count() != 0) {
