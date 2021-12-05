@@ -1,9 +1,12 @@
 package com.example.backend.controllers;
 
 import com.example.backend.model.binding.CreateTripBindingModel;
+import com.example.backend.model.binding.PassengersGroupBindingModel;
 import com.example.backend.model.binding.VehicleGroupBindingModel;
 import com.example.backend.model.service.CreateTripServiceModel;
+import com.example.backend.model.service.PassengersGroupServiceModel;
 import com.example.backend.model.service.VehicleGroupServiceModel;
+import com.example.backend.model.view.PassengerViewModel;
 import com.example.backend.model.view.VehicleVewModel;
 import com.example.backend.service.*;
 import org.modelmapper.ModelMapper;
@@ -106,8 +109,6 @@ public class TripController {
 
         VehicleGroupBindingModel vehiclesForm = new VehicleGroupBindingModel();
 
-        List<VehicleVewModel> veh = tripService.getAllAvailableVehicleForTrip(id);
-
         for (VehicleVewModel vehicleVewModel : tripService.getAllAvailableVehicleForTrip(id)) {
             vehiclesForm.addVehicle(vehicleVewModel);
         }
@@ -135,5 +136,28 @@ public class TripController {
         model.addAttribute("trip", tripService.findById(id));
 
         return "trip-view";
+    }
+
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
+    @GetMapping("/add/passengers/{id}")
+    public String addPassengers(@PathVariable String id, Model model) {
+
+        List<PassengerViewModel> passengers = tripService.getAllUnJoinedPassengersInTripWith(id);
+
+        model.addAttribute("form", passengers);
+        model.addAttribute("tripId", id);
+
+        return "trip-passenger-add";
+    }
+
+    @PreAuthorize("hasRole('TRIP_ADMIN')")
+    @PostMapping("/add/passengers/{id}")
+    public String addPassengersToTrip(@ModelAttribute PassengersGroupBindingModel passengersGroupBindingModel,
+                                      @PathVariable String id) {
+
+        tripService.addPassengersToExistingTrip(modelMapper.map(passengersGroupBindingModel, PassengersGroupServiceModel.class), id);
+
+        return "redirect:/portal/trips";
+
     }
 }

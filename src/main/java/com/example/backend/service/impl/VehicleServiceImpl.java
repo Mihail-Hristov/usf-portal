@@ -76,21 +76,21 @@ public class VehicleServiceImpl implements VehicleService {
                 .map(BaseEntity::getId)
                 .collect(Collectors.toList());
 
-        List<VehicleVewModel> test;
+        List<VehicleVewModel> vehicleVewModels;
 
         if (ids.size() == 0) {
-            test =  vehicleRepository.findAllBy()
+            vehicleVewModels =  vehicleRepository.findAllBy()
                     .stream()
                     .map(vehicle -> modelMapper.map(vehicle, VehicleVewModel.class))
                     .collect(Collectors.toList());
         }else {
-            test = vehicleRepository.findAllByIdNotIn(ids)
+            vehicleVewModels = vehicleRepository.findAllByIdNotIn(ids)
                     .stream()
                     .map(vehicle -> modelMapper.map(vehicle, VehicleVewModel.class))
                     .collect(Collectors.toList());
         }
 
-        return test;
+        return vehicleVewModels;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.backend.service.impl;
 
 import com.example.backend.exceprtion.ObjectNotFoundException;
+import com.example.backend.model.entity.BaseEntity;
 import com.example.backend.model.entity.Passenger;
 import com.example.backend.model.entity.User;
 import com.example.backend.model.service.UserRegistrationServiceModel;
@@ -10,6 +11,7 @@ import com.example.backend.service.PassengerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,5 +88,30 @@ public class PassengerServiceImpl implements PassengerService {
         }
 
         return passenger;
+    }
+
+    @Override
+    public List<PassengerViewModel> getAllAvailablePassengers(List<Passenger> passengers) {
+
+        Collection<String> passengersIds = passengers
+                .stream()
+                .map(BaseEntity::getId)
+                .collect(Collectors.toList());
+
+        List<PassengerViewModel> passengerViewModels;
+
+        if (passengers.size() == 0) {
+            passengerViewModels = passengerRepository.findAll()
+                    .stream()
+                    .map(passenger -> modelMapper.map(passenger, PassengerViewModel.class))
+                    .collect(Collectors.toList());
+        }else {
+            passengerViewModels = passengerRepository.findAllByIdNotIn(passengersIds)
+                    .stream()
+                    .map(passenger -> modelMapper.map(passenger, PassengerViewModel.class))
+                    .collect(Collectors.toList());
+        }
+
+        return passengerViewModels;
     }
 }

@@ -126,7 +126,6 @@
                                             <td>
                                                 <div class="action">
                                                     <a th:href="@{/portal/trips/details/{id}(id= ${t.id})}" class="text-success mr-4" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit"> <i class="fa fa-pencil h5 m-0"></i></a>
-                                                    <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Close"> <i class="fa fa-remove h5 m-0"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -171,6 +170,13 @@
 
     document.querySelector(".new-trip").addEventListener("click", () => {
         window.location.replace("http://localhost:8080/portal/trips/create")
+    })
+
+    document.querySelector(".bx-log-out").addEventListener("click", async (ev) => {
+        const response =  await fetch(`http://localhost:8080/portal/users/logout`, {
+            method: 'POST',
+        });
+        window.location.replace("http://localhost:8080");
     })
 
 

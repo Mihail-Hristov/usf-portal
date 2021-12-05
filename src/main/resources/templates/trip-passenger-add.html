@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -29,23 +29,19 @@
     <div id="main-content">
         <section class="trip">
             <div class="card-header">
-                <strong>Коли</strong>
+                <strong>Пътници</strong>
             </div>
             <div class="card-body card-block">
-                <form th:action="@{/portal/trips/add/vehicles/{id}(id = ${id})}"
+                <form th:action="@{/portal/trips/add/passengers/{id}(id = ${id})}"
                       th:method="POST"
                       th:object="${form}"
                       class="form__group">
                     <div>
 
-                        <span th:if="${form.vehicles.size() == 0}">Няма свободни коли</span>
-
-                        <th:block th:unless="${form.vehicles.size() == 0}">
-                        <div th:each="v, itemStat : ${form.vehicles}">
-                                <labbel>Кола:</labbel>
-                                <input type="checkbox" th:field="*{vehicles[__${itemStat.index}__].id}" th:value="${v.id}" th:text="${v.description}">
+                        <div th:each="p : ${form}">
+                            <labbel>Пътник:</labbel>
+                            <input type="checkbox" th:field="*{[__${itemStat.index}__].id}" th:text="${p.name}">
                         </div>
-                        </th:block>
 
                     </div>
                     <button type="submit"> Добави</button>
@@ -77,6 +73,5 @@
     })
 
 </script>
-</main>
 </body>
 </html>

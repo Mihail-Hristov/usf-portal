@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/css/portal.css">
     <link rel="stylesheet" href="/css/trip-edit.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -29,7 +30,8 @@
             <input type="hidden" name="tripId" id="tripId" th:value="*{id}">
             <div class="card-header">
                 <strong th:text="*{name}"></strong>
-                <button class="add-vehicles" th:id="*{id}">Добави превозни средства</button>
+                <button class="add-vehicles btn btn-success" th:id="*{id}">Добави превозни средства</button>
+                <button class="add-passengers btn btn-success" th:id="*{id}">Добави пътници</button>
             </div>
             <div class="card-body card-block">
                 <form
@@ -39,7 +41,7 @@
                 >
                     <section class="trip-section mod-vehicles">
                         <div th:each="v : ${trip.vehicles}" class="form-group drop vehicle" ondrop="drop(event)" ondragover="allowDrop(event)" th:id="${v.key.id}">
-                            <label class="col-sm-12 control-label" th:text="${v.key.description}"></label>
+                            <label class="col-sm-12 control-label" th:text="|${v.key.description} с капацитет от ${v.key.capacity} места|"></label>
                             <div th:each="p : ${v.value.passengers}" th:object="${p}" class="form-group passenger"  draggable="true" ondragstart="drag(event)" th:id="${p.id}">
                                 <table>
                                     <tr>

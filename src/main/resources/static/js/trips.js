@@ -63,6 +63,11 @@ document.querySelector(".add-vehicles").addEventListener("click", (ev) => {
     window.location.replace("http://localhost:8080/portal/trips/add/vehicles/" + id);
 })
 
+document.querySelector(".add-passengers").addEventListener("click", (ev) => {
+    const id = ev.target.id;
+    window.location.replace("http://localhost:8080/portal/trips/add/passengers/" + id);
+})
+
 let arrow = document.querySelectorAll(".arrow");
 for (let i = 0; i < arrow.length; i++) {
     arrow[i].addEventListener("click", (e)=>{

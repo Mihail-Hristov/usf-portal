@@ -83,6 +83,13 @@
         sidebar.classList.toggle("close");
     });
 
+    document.querySelector(".bx-log-out").addEventListener("click", async (ev) => {
+        const response =  await fetch(`http://localhost:8080/portal/users/logout`, {
+            method: 'POST',
+        });
+        window.location.replace("http://localhost:8080");
+    })
+
 </script>
 
 </body>

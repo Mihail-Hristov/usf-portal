@@ -2,10 +2,8 @@ package com.example.backend.service.impl;
 
 import com.example.backend.exceprtion.ObjectNotFoundException;
 import com.example.backend.model.entity.*;
-import com.example.backend.model.service.CarsOrganisationsServiceModel;
-import com.example.backend.model.service.CreateTripServiceModel;
-import com.example.backend.model.service.TripOrganizationServiceModel;
-import com.example.backend.model.service.VehicleGroupServiceModel;
+import com.example.backend.model.service.*;
+import com.example.backend.model.view.PassengerViewModel;
 import com.example.backend.model.view.TripViewModel;
 import com.example.backend.model.view.VehicleVewModel;
 import com.example.backend.repository.TripRepository;
@@ -109,11 +107,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public TripViewModel findById(String id) {
 
-        Trip trip = tripRepository.findById(id).orElse(null);
-
-        if (trip == null) {
-            throw new ObjectNotFoundException(id);
-        }
+        Trip trip = this.findTripByIdOrElseThrowException(id);
 
         return modelMapper.map(trip, TripViewModel.class);
     }
@@ -124,11 +118,7 @@ public class TripServiceImpl implements TripService {
 
         Passenger passenger = passengerService.findPassengerBuUserId(id);
 
-        Trip trip = tripRepository.findById(tripId).orElse(null);
-
-        if (trip == null) {
-            throw new ObjectNotFoundException(tripId);
-        }
+        Trip trip = this.findTripByIdOrElseThrowException(tripId);
         trip.getTripPassengers().add(passenger);
         trip.getAvailablePassengers().add(passenger);
 
@@ -141,11 +131,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public TripViewModel addVehicleToExistingTrip(VehicleGroupServiceModel vehicleGroupServiceModel, String tripId) {
 
-        Trip trip = tripRepository.findById(tripId).orElse(null);
-
-        if (trip == null) {
-            throw new ObjectNotFoundException(tripId);
-        }
+        Trip trip = this.findTripByIdOrElseThrowException(tripId);
 
 
         vehicleGroupServiceModel
@@ -169,11 +155,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public List<VehicleVewModel> getAllAvailableVehicleForTrip(String id) {
 
-        Trip trip = tripRepository.findById(id).orElse(null);
-
-        if (trip == null) {
-            throw new ObjectNotFoundException(id);
-        }
+        Trip trip = this.findTripByIdOrElseThrowException(id);
 
         List<Vehicle> usedVehicles = new ArrayList<>(trip.getVehicles().keySet());
 
@@ -183,13 +165,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public Trip findByIdForInternalUse(String id) {
 
-        Trip trip = tripRepository.findById(id).orElse(null);
-
-        if (trip == null) {
-            throw new ObjectNotFoundException(id);
-        }
-
-        return trip;
+        return this.findTripByIdOrElseThrowException(id);
     }
 
     @Transactional
@@ -259,5 +235,48 @@ public class TripServiceImpl implements TripService {
                 .stream()
                 .map(this::asTripViewModel)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    @Override
+    public List<PassengerViewModel> getAllUnJoinedPassengersInTripWith(String tripId) {
+
+        Trip trip = this.findTripByIdOrElseThrowException(tripId);
+
+        List<Passenger> joinedPassengers = new ArrayList<>(trip.getTripPassengers());
+
+        return passengerService.getAllAvailablePassengers(joinedPassengers);
+    }
+
+    @Override
+    public void addPassengersToExistingTrip(PassengersGroupServiceModel passengersGroupServiceModel, String tripId) {
+
+        Trip trip = this.findTripByIdOrElseThrowException(tripId);
+
+        List<Passenger> tripPassengers = trip.getTripPassengers();
+        List<Passenger> availablePassengers = trip.getAvailablePassengers();
+
+        passengersGroupServiceModel
+                .getPassengerViewModelList()
+                .forEach(passengerViewModel -> {
+                    Passenger passenger = passengerService.findPassengerById(passengerViewModel.getId());
+                    tripPassengers.add(passenger);
+                    availablePassengers.add(passenger);
+                });
+
+        trip.setAvailablePassengers(availablePassengers);
+        trip.setTripPassengers(tripPassengers);
+
+        tripRepository.save(trip);
+    }
+
+    private Trip findTripByIdOrElseThrowException(String id) {
+        Trip trip = tripRepository.findById(id).orElse(null);
+
+        if (trip == null) {
+            throw new ObjectNotFoundException(id);
+        }
+
+        return trip;
     }
 }
