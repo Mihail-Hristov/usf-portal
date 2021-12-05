@@ -60,6 +60,43 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void initAdmin() {
+        if (userRepository.count() != 0) {
+            return;
+        }
+
+        User user = new User();
+        user.setLastName("Adminov");
+        user.setUsername("admin@usf.bg");
+        user.setNickname("Администратор");
+        user.setFirstName("Admin");
+        user.setPassword("admin123");
+        user.setActive(true);
+
+        Set<UserRole> roles = new HashSet<>();
+
+        UserRole userRoleAdmin = new UserRole();
+        userRoleAdmin.setName(UserRoleNameEnum.ADMIN);
+        roles.add(userRoleAdmin);
+
+        UserRole userRoleUsf = new UserRole();
+        userRoleUsf.setName(UserRoleNameEnum.USF_MEMBER);
+        roles.add(userRoleUsf);
+
+        UserRole userRoleGuest = new UserRole();
+        userRoleGuest.setName(UserRoleNameEnum.GUEST);
+        roles.add(userRoleGuest);
+
+        user.setRoles(roles);
+
+        GroupName groupName = new GroupName();
+        groupName.setName(GroupNameEnum.USF);
+        user.setGroupName(groupName);
+
+        userRepository.save(user);
+    }
+
+    @Override
     @Transactional
     public boolean verifyUser(String token) throws Exception {
 

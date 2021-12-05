@@ -14,6 +14,8 @@ import java.util.List;
 
 public interface UserService {
 
+    void initAdmin();
+
     boolean register(UserRegistrationServiceModel userRequest);
 
     public void sendRegistrationConfirmationEmail(User user);
