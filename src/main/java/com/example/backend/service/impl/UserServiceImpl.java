@@ -70,7 +70,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername("admin@usf.bg");
         user.setNickname("Администратор");
         user.setFirstName("Admin");
-        user.setPassword("admin123");
+        user.setPassword(passwordEncoder.encode("admin123"));
         user.setActive(true);
 
         Set<UserRole> roles = new HashSet<>();
