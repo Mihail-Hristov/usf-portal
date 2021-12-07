@@ -20,4 +20,6 @@ public interface PassengerRepository extends JpaRepository<Passenger, String> {
     List<Passenger> findAllBy();
 
     List<Passenger> findAllByIdNotIn(Collection<String> id);
+
+    Passenger findPassengerByName(String name);
 }

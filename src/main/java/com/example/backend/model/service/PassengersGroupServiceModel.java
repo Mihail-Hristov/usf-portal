@@ -6,17 +6,16 @@ import java.util.List;
 
 public class PassengersGroupServiceModel {
 
-    private List<PassengerViewModel> passengerViewModelList;
+    private List<String> passengers;
 
     public PassengersGroupServiceModel() {
     }
 
-    public List<PassengerViewModel> getPassengerViewModelList() {
-        return passengerViewModelList;
+    public List<String> getPassengers() {
+        return passengers;
     }
 
-    public void setPassengerViewModelList(List<PassengerViewModel> passengerViewModelList) {
-        this.passengerViewModelList = passengerViewModelList;
+    public void setPassengers(List<String> passengers) {
+        this.passengers = passengers;
     }
-
 }

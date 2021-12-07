@@ -36,14 +36,19 @@ public class TownServiceImpl implements TownService {
             return;
         }
 
+        Country country = countryService.getCountryByName("България");
+
         Town town = new Town();
         town.setName("Стара Загора");
+        town.setCountry(country);
 
         Town town2 = new Town();
         town2.setName("Варна");
+        town2.setCountry(country);
 
         Town town3 = new Town();
         town3.setName("Пловдив");
+        town3.setCountry(country);
 
         townRepository.save(town);
         townRepository.save(town2);

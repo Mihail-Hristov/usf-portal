@@ -18,4 +18,6 @@ public interface CountryService {
     public void createNewCountry(CountryCreateServiceModel countryCreateServiceModel);
 
     public Page<CountryViewModel> getAllCountriesPagination(Integer pageNo, Integer pageSize, String sortBy);
+
+    Country getCountryByName(String name);
 }

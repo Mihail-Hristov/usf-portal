@@ -40,10 +40,15 @@ public class VehicleServiceImpl implements VehicleService {
     public void create(CreateVehicleServiceModel addCarServiceModel) {
 
         Vehicle vehicle = modelMapper.map(addCarServiceModel, Vehicle.class);
-        User user = userService.findUserById(addCarServiceModel.getOwner());
+
+
+        if (!addCarServiceModel.getOwner().isBlank()) {
+            User user = userService.findUserById(addCarServiceModel.getOwner());
+            vehicle.setOwner(user);
+        }
 
         vehicle.setType(vehicleTypeService.findVehicleTypeByName(addCarServiceModel.getType()));
-        vehicle.setOwner(user);
+
 
         this.vehicleRepository.save(vehicle);
     }

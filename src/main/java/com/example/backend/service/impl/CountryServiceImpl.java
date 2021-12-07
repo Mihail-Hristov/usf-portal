@@ -73,4 +73,9 @@ public class CountryServiceImpl implements CountryService {
     private CountryViewModel asCountryViewModel(Country country) {
         return modelMapper.map(country, CountryViewModel.class);
     }
+
+    @Override
+    public Country getCountryByName(String name) {
+        return countryRepository.findCountryByName(name);
+    }
 }

@@ -133,4 +133,9 @@ public class PassengerServiceImpl implements PassengerService {
 
         return passengerViewModels;
     }
+
+    @Override
+    public Passenger findPassengerByName(String name) {
+        return passengerRepository.findPassengerByName(name);
+    }
 }

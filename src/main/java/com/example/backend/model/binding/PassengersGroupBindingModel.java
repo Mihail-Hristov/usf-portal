@@ -7,21 +7,16 @@ import java.util.List;
 
 public class PassengersGroupBindingModel {
 
-    private List<String> passengerViewModelList;
+    private List<String> passengers;
 
     public PassengersGroupBindingModel() {
-        passengerViewModelList = new ArrayList<>();
     }
 
-    public void addPassenger(String id) {
-        passengerViewModelList.add(id);
+    public List<String> getPassengers() {
+        return passengers;
     }
 
-    public List<String> getPassengerViewModelList() {
-        return passengerViewModelList;
-    }
-
-    public void setPassengerViewModelList(List<String> passengerViewModelList) {
-        this.passengerViewModelList = passengerViewModelList;
+    public void setPassengers(List<String> passengers) {
+        this.passengers = passengers;
     }
 }

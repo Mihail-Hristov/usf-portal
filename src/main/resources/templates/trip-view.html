@@ -58,7 +58,10 @@
 
                                     <div class="pull-left text-center">
                                         <div class="resp-avatars">
-                                            <img th:each="p : ${v.value.passengers}" th:src="*{p.user.profilePicture.url}" alt="avatar" class="img-circle">
+                                            <di th:each="p : ${v.value.passengers}">
+                                                <img th:if="${p.user != null and p.user.getProfilePicture().getUrl() != null}" th:src="*{p.user.profilePicture.url}" alt="avatar" class="img-circle">
+                                                <img th:unless="*{p.user != null and p.user.getProfilePicture().getUrl() != null}" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar" class="img-circle">
+                                            </di>
                                         </div>
                                     </div>
                                     <div class="clearfix"></div>

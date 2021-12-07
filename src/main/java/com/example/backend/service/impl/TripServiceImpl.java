@@ -248,6 +248,7 @@ public class TripServiceImpl implements TripService {
         return passengerService.getAllAvailablePassengers(joinedPassengers);
     }
 
+    @Transactional
     @Override
     public void addPassengersToExistingTrip(PassengersGroupServiceModel passengersGroupServiceModel, String tripId) {
 
@@ -257,9 +258,9 @@ public class TripServiceImpl implements TripService {
         List<Passenger> availablePassengers = trip.getAvailablePassengers();
 
         passengersGroupServiceModel
-                .getPassengerViewModelList()
-                .forEach(passengerViewModel -> {
-                    Passenger passenger = passengerService.findPassengerById(passengerViewModel.getId());
+                .getPassengers()
+                .forEach(passengerName -> {
+                    Passenger passenger = passengerService.findPassengerByName(passengerName);
                     tripPassengers.add(passenger);
                     availablePassengers.add(passenger);
                 });

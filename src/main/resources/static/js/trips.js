@@ -45,11 +45,11 @@ document.querySelector(".edit").addEventListener("click", (ev) => {
 
      patchData(final);
 
-    window.location.replace("https://usf1997test.herokuapp.com/portal");
+    window.location.replace("http://localhost:8080/portal");
 })
 
 async function patchData(obj) {
-    const response =  await fetch(`https://usf1997test.herokuapp.com/api/trip/edit/${tripId}`, {
+    const response =  await fetch(`http://localhost:8080/api/trip/edit/${tripId}`, {
         method: 'PATCH',
         headers : {
             'Content-Type': 'application/json'
@@ -60,12 +60,13 @@ async function patchData(obj) {
 
 document.querySelector(".add-vehicles").addEventListener("click", (ev) => {
     const id = ev.target.id;
-    window.location.replace("https://usf1997test.herokuapp.com/portal/trips/add/vehicles/" + id);
+    //window.location.replace("https://usf1997test.herokuapp.com/portal/trips/add/vehicles/" + id);
+    window.location.replace("http://localhost:8080/portal/trips/add/vehicles/" + id);
 })
 
 document.querySelector(".add-passengers").addEventListener("click", (ev) => {
     const id = ev.target.id;
-    window.location.replace("https://usf1997test.herokuapp.com/portal/trips/add/passengers/" + id);
+    window.location.replace("http://localhost:8080/portal/trips/add/passengers/" + id);
 })
 
 let arrow = document.querySelectorAll(".arrow");

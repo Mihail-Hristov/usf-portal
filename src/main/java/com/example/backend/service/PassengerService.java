@@ -22,4 +22,6 @@ public interface PassengerService {
     public Passenger findPassengerBuUserId(String id);
 
     List<PassengerViewModel> getAllAvailablePassengers(List<Passenger> passengers);
+
+    Passenger findPassengerByName(String name);
 }

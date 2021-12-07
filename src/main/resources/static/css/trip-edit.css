@@ -350,3 +350,9 @@ li {
     grid-gap: 15px;
     grid-template-columns: repeat(2, 1fr);
 }
+
+.vehicle {
+    background-image: url("https://image.shutterstock.com/shutterstock/photos/1627075126/display_1500/stock-photo-car-line-drawing-seen-from-above-1627075126.jpg");
+    background-repeat: no-repeat;
+    background-size: 148px 198px;
+}

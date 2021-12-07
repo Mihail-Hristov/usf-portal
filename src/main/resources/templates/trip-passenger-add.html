@@ -38,9 +38,9 @@
                       class="form__group">
                     <div>
 
-                        <div th:each="p : ${form}">
+                        <div th:each="p : ${form}" th:object="${p}">
                             <labbel>Пътник:</labbel>
-                            <input type="checkbox" th:field="*{[__${itemStat.index}__].id}" th:text="${p.name}">
+                            <input type="checkbox" name="passengers" th:value="*{name}" th:text="${p.name}">
                         </div>
 
                     </div>

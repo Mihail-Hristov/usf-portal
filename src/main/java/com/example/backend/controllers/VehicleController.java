@@ -62,6 +62,6 @@ public class VehicleController {
 
         vehicleService.create(modelMapper.map(addVehicleBindingModel, CreateVehicleServiceModel.class));
 
-        return "redirect:/all";
+        return "redirect:/portal/vehicles/all";
     }
 }

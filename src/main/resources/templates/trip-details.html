@@ -40,16 +40,21 @@
                 class="trip-details"
                 >
                     <section class="trip-section mod-vehicles">
-                        <div th:each="v : ${trip.vehicles}" class="form-group drop vehicle" ondrop="drop(event)" ondragover="allowDrop(event)" th:id="${v.key.id}">
+                        <div th:each="v : ${trip.vehicles}" >
                             <label class="col-sm-12 control-label" th:text="|${v.key.description} с капацитет от ${v.key.capacity} места|"></label>
+                            <div class="form-group drop vehicle" ondrop="drop(event)" ondragover="allowDrop(event)" th:id="${v.key.id}">
                             <div th:each="p : ${v.value.passengers}" th:object="${p}" class="form-group passenger"  draggable="true" ondragstart="drag(event)" th:id="${p.id}">
                                 <table>
                                     <tr>
-                                        <td><img alt="image" class="img-circle" th:src="*{user.profilePicture.url}" width="32" height="32"/></td>
+                                        <td>
+                                            <img th:if="${p.user != null and p.user.getProfilePicture().getUrl() != null}" alt="image" class="img-circle" th:src="*{user.profilePicture.url}" width="32" height="32"/>
+                                            <img th:unless="*{user != null and user.getProfilePicture().getUrl() != null}" alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="32" height="32"/>
+                                        </td>
                                         <td><label class="control-label" th:text="*{name}"></label></td>
                                     </tr>
                                 </table>
                             </div>
+                        </div>
                         </div>
                     </section>
 
@@ -60,7 +65,10 @@
 
                         <table>
                             <tr>
-                                <td><img alt="image" class="img-circle" th:src="*{user.profilePicture.url}" width="32" height="32"/></td>
+                                <td>
+                                    <img th:if="${p.user != null and p.user.getProfilePicture().getUrl() != null}" alt="image" class="img-circle" th:src="*{user.profilePicture.url}" width="32" height="32"/>
+                                    <img th:unless="*{user != null and user.getProfilePicture().getUrl() != null}" alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="32" height="32"/>
+                                </td>
                                 <td><label class="control-label" th:text="*{name}"></label></td>
                             </tr>
                         </table>
