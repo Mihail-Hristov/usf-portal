@@ -10,6 +10,7 @@ public class UserViewModel {
     private String lastName;
     private String nickname;
     private GroupName groupName;
+    private String lastLoginFromIp;
 
     public UserViewModel() {
     }
@@ -60,5 +61,13 @@ public class UserViewModel {
 
     public void setGroupName(GroupName groupName) {
         this.groupName = groupName;
+    }
+
+    public String getLastLoginFromIp() {
+        return lastLoginFromIp;
+    }
+
+    public void setLastLoginFromIp(String lastLoginFromIp) {
+        this.lastLoginFromIp = lastLoginFromIp;
     }
 }

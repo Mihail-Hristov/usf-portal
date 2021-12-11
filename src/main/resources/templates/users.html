@@ -40,6 +40,7 @@
                             <th>Имена</th>
                             <th>Група</th>
                             <th>Имейл</th>
+                            <th>Последен вход от</th>
                             <th>Действие</th>
                         </tr>
                         </thead>
@@ -48,9 +49,10 @@
                                 <td>
                                     <img src="https://bootdey.com/img/Content/avatar/avatar1.png" width="32" height="32" class="rounded-circle my-n1" alt="Avatar">
                                 </td>
-                                <td th:text="|*{u.firstName} *{u.lastName}|">Garrett Winters</td>
-                                <td th:text="*{u.groupName.name}">Good Guys</td>
-                                <td th:text="*{u.username}">garrett@winters.com</td>
+                            <td th:text="|*{u.firstName} *{u.lastName}|">Garrett Winters</td>
+                            <td th:text="*{u.groupName.name}">Good Guys</td>
+                            <td th:text="*{u.username}">garrett@winters.com</td>
+                            <td th:text="*{u.lastLoginFromIp}">ip</td>
                                 <td>
                                     <a th:href="@{/portal/settings/users/details/{id}(id= ${u.id})}">
                                     <button type="button" class="btn btn-outline-primary">Редактирай</button>
