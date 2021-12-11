@@ -165,7 +165,7 @@ public class UserServiceImpl implements UserService {
 
         Context context = new Context();
         context.setVariable("name", user.getFirstName());
-        String baseURL = "http://localhost:8080";
+        String baseURL = "https://usf1997test.herokuapp.com";
         context.setVariable("URL", emailContext.buildVerificationUrl(baseURL, secureToken.getToken()));
 
         emailContext.setTemplateLocation(templateEngine.process("emailForRegistration", context));

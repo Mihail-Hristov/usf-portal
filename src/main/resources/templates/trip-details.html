@@ -46,7 +46,7 @@
                             <div th:each="p : ${v.value.passengers}" th:object="${p}" class="form-group passenger"  draggable="true" ondragstart="drag(event)" th:id="${p.id}">
                                 <table>
                                     <tr>
-                                        <td>
+                                        <td class="passenger">
                                             <img th:if="${p.user != null and p.user.getProfilePicture().getUrl() != null}" alt="image" class="img-circle" th:src="*{user.profilePicture.url}" width="32" height="32"/>
                                             <img th:unless="*{user != null and user.getProfilePicture().getUrl() != null}" alt="image" class="img-circle" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="32" height="32"/>
                                         </td>
@@ -59,8 +59,8 @@
                     </section>
 
                     <section class="trip-section">
+                        <label class="col-sm-12 control-label">Пътуващи</label>
                         <div class="form-group drop-passengers passengers" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <label class="col-sm-12 control-label">Пътуващи</label>
                     <div th:each="p : ${trip.availablePassengers}" th:object="${p}" class="form-group passenger"  draggable="true" ondragstart="drag(event)" th:id="${p.id}">
 
                         <table>

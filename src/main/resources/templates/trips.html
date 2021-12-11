@@ -116,7 +116,7 @@
                                             </td>
                                             <td>
                                                 <div th:with="result=${((1.0 * (t.tripPassengers.size() - t.availablePassengers.size())) / (1.0 * t.tripPassengers.size())) * 100}">
-                                                <p class="mb-0" th:text="|Разпределени ${result}%|">Progress</p>
+                                                <p class="mb-0" th:text="|Разпределени ${#numbers.formatDecimal(result, 2, 0)}%|">Progress</p>
                                                 <div class="progress mt-2" style="height: 5px;">
                                                     <div class="progress-bar bg-success" role="progressbar" th:style="'width:' + ${result} + '%;'" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                                 </div>
@@ -169,7 +169,7 @@
     });
 
     document.querySelector(".new-trip").addEventListener("click", () => {
-        window.location.replace("http://localhost:8080/portal/trips/create")
+        window.location.replace("https://usf1997test.herokuapp.com/portal/trips/create")
     })
 
     document.querySelector(".bx-log-out").addEventListener("click", async (ev) => {

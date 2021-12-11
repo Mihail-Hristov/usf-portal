@@ -87,7 +87,7 @@ public class TripServiceImpl implements TripService {
                         Context context = new Context();
                         context.setVariable("name", user.getFirstName());
                         context.setVariable("to", trip.getDestinationTown().getName());
-                        String baseURL = "http://localhost:8080";
+                        String baseURL = "https://usf1997test.herokuapp.com";
                         context.setVariable("URL", email.buildInvitationUrl(baseURL, user.getId(), trip.getId()));
 
                         email.setTemplateLocation(templateEngine.process("tripInvitationEmail", context));

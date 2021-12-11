@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="project-progress pull-left">
                                         <div th:with="result=${((1.0 * v.value.passengers.size()) / (1.0 * v.key.capacity)) * 100}">
-                                        <span class="task-title" th:text="|Заета на ${result}%|">Completion with</span>
+                                        <span class="task-title" th:text="|Заета на ${#numbers.formatDecimal(result, 2, 0)}%|">Completion with</span>
                                         <div class="progress">
                                             <div class="progress-bar progress-bar-striped progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" th:style="'width:' + ${result} + '%;'">
                                             </div>

@@ -257,6 +257,7 @@ li {
     color:blue;
     width:150px;
     height:200px;
+    border-style: dashed;
 }
 
 /* Rounded sliders */
@@ -355,4 +356,12 @@ li {
     background-image: url("https://image.shutterstock.com/shutterstock/photos/1627075126/display_1500/stock-photo-car-line-drawing-seen-from-above-1627075126.jpg");
     background-repeat: no-repeat;
     background-size: 148px 198px;
+    border-style: dashed;
+
+}
+
+.passenger {
+    border: 1px solid #ccc;
+    background-color: #FFFFFF;
+    color: black;
 }

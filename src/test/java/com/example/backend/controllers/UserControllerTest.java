@@ -1,6 +1,6 @@
 package com.example.backend.controllers;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -55,14 +55,15 @@ class UserControllerTest {
     @Test
     void testRegisterUser() throws Exception {
         mockMvc.perform(post("/portal/users/register")
-                .param("username", TEST_USER_EMAIL)
-                .param("nickname", "Тъпана")
-                .param("password", "12345678")
-                .param("confirmPassword", "12345678")
-                .param("firstName", "Mihail")
-                .param("lastName", "Hristov")
-                .param("isDriver", "true")
-                .param("groupName", "USF")
+                        .param("username", TEST_USER_EMAIL)
+                        .param("nickname", "Тъпана")
+                        .param("password", "12345678")
+                        .param("confirmPassword", "12345678")
+                        .param("firstName", "Mihail")
+                        .param("lastName", "Hristov")
+                        .param("isDriver", "true")
+                        .param("groupName", "USF")
+                        .param("role", "TRIP_ADMIN")
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
         ).
@@ -86,6 +87,7 @@ class UserControllerTest {
     @Test
     void testLoginUser() throws Exception {
         mockMvc.perform(post("/portal/users/login")
+                        .with(user("csdc"))
                         .param("username", TEST_USER_EMAIL)
                         .param("password", "12345678")
                         .with(csrf())

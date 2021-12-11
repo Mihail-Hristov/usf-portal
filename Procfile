@@ -1,1 +1,1 @@
-web: java -jar target/BackEnd-0.0.8-SNAPSHOT.jar
+web: java -jar target/BackEnd-0.0.9-SNAPSHOT.jar
