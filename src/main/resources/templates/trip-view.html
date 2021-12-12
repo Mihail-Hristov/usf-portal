@@ -44,7 +44,8 @@
                                     </div>
 
                                     <div class="project-name pull-left">
-                                        <div class="name" th:text="*{v.key.description}">car name</div>
+                                        <div class="name">Превозно средство:</div>
+                                        <div class="name" th:text="*{v.key.description}">name</div>
                                     </div>
                                     <div class="project-progress pull-left">
                                         <div th:with="result=${((1.0 * v.value.passengers.size()) / (1.0 * v.key.capacity)) * 100}">

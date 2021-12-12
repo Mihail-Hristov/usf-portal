@@ -145,3 +145,7 @@
     width:40px;
     height:40px;
 }
+
+.img-circle {
+    border-radius: 50%;
+}

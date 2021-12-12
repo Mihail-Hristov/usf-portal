@@ -102,20 +102,18 @@
                 <div class="container table-wrapper">
                     <ul class="responsive-table table-scroll">
                         <li class="table-header">
-                            <div class="col col-1">Описание</div>
+                            <div class="col col-3">Описание</div>
                             <div class="col col-2">Марка</div>
-                            <div class="col col-3">Модел</div>
-                            <div class="col col-4">Тип</div>
-                            <div class="col col-4">Капацитет</div>
-                            <div class="col col-5">Разход</div>
+                            <div class="col col-2">Модел</div>
+                            <div class="col col-3">Капацитет</div>
+                            <div class="col col-3">Разход</div>
                         </li>
                         <li th:each="v : ${vehicles.content}" class="table-row">
-                            <div class="col col-1" data-label="Description" th:text="*{v.description}"></div>
+                            <div class="col col-3" data-label="Description" th:text="*{v.description}"></div>
                             <div class="col col-2" data-label="Make" th:text="*{v.make}"></div>
-                            <div class="col col-3" data-label="Model" th:text="*{v.model}"></div>
-                            <div class="col col-3" data-label="Model" th:text="*{v.type}"></div>
-                            <div class="col col-4" data-label="Capacity" th:text="*{v.capacity}"></div>
-                            <div class="col col-5" data-label="Capacity" th:text="*{v.fuelConsumption}"></div>
+                            <div class="col col-2" data-label="Model" th:text="*{v.model}"></div>
+                            <div class="col col-3" data-label="Capacity" th:text="*{v.capacity}"></div>
+                            <div class="col col-3" data-label="Capacity" th:text="*{v.fuelConsumption}"></div>
                         </li>
                     </ul>
                 </div>
